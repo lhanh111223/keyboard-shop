@@ -39,30 +39,24 @@ public class IndexControl extends HttpServlet {
         DAO dao = new DAO();
         List<Category> listC = dao.getAllCategory();
         List<Product> listLast = dao.getLast();
-        
         List<Product> listTopSold = dao.getTopSold();
-        
         List<Product> list1 = dao.getFeaturedByCID("1");
         List<Product> list2 = dao.getFeaturedByCID("2");
         List<Product> list3 = dao.getFeaturedByCID("3");
         List<Product> list4 = dao.getFeaturedByCID("4");
-        
         // set data to JSP
-        
         //discount products
         FilterDAO fd = new FilterDAO();
         List<Product> listDiscountProd = fd.getDiscountProduct();
         request.setAttribute("listDiscountProd", listDiscountProd);
-        
         request.setAttribute("listTS", listTopSold);
-        
         request.setAttribute("list1", list1);
         request.setAttribute("list2", list2);
         request.setAttribute("list3", list3);
         request.setAttribute("list4", list4);
-        
         request.setAttribute("listC", listC);
         request.setAttribute("listLP", listLast);
+        
         request.getRequestDispatcher("index.jsp").forward(request, response);
     } 
 
