@@ -5,13 +5,11 @@
 
 package control;
 
-
 import daoo.DAO;
-import daoo.FilterDAO;
 import entity.Cart;
-import entity.Category;
 import entity.Product;
 import java.io.IOException;
+import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.Cookie;
@@ -22,10 +20,10 @@ import java.util.List;
 
 /**
  *
- * @author Hoang Anh
+ * @author HoangAnh
  */
-@WebServlet(name="IndexControl", urlPatterns={"/index"})
-public class IndexControl extends HttpServlet {
+@WebServlet(name="ShowCartControl", urlPatterns={"/showcart"})
+public class ShowCartControl extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -37,30 +35,18 @@ public class IndexControl extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        // get data from DAO
-        DAO dao = new DAO();
-        List<Category> listC = dao.getAllCategory();
-        List<Product> listLast = dao.getLast();
-        List<Product> listTopSold = dao.getTopSold();
-        List<Product> list1 = dao.getFeaturedByCID("1");
-        List<Product> list2 = dao.getFeaturedByCID("2");
-        List<Product> list3 = dao.getFeaturedByCID("3");
-        List<Product> list4 = dao.getFeaturedByCID("4");
-        // set data to JSP
-        //discount products
-        FilterDAO fd = new FilterDAO();
-        List<Product> listDiscountProd = fd.getDiscountProduct();
-        request.setAttribute("listDiscountProd", listDiscountProd);
-        request.setAttribute("listTS", listTopSold);
-        request.setAttribute("list1", list1);
-        request.setAttribute("list2", list2);
-        request.setAttribute("list3", list3);
-        request.setAttribute("list4", list4);
-        request.setAttribute("listC", listC);
-        request.setAttribute("listLP", listLast);
-        
-        
-        request.getRequestDispatcher("index.jsp").forward(request, response);
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet ShowCartControl</title>");  
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet ShowCartControl at " + request.getContextPath () + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
+        }
     } 
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -74,7 +60,21 @@ public class IndexControl extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        processRequest(request, response);
+        DAO dao = new DAO();
+        List<Product> list = dao.getAllProduct();
+        Cookie[] arr = request.getCookies();
+        String txt = "";
+        if (arr != null) {
+            for (Cookie o : arr) {
+                if (o.getName().equals("cart")) {
+                    txt = txt + o.getValue();
+                }
+
+            }
+        }
+        Cart cart = new Cart(txt, list);
+        request.setAttribute("cart", cart);
+        request.getRequestDispatcher("ShoppingCart.jsp").forward(request, response);
     } 
 
     /** 

@@ -82,36 +82,40 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="col-lg-6 col-md-6">
-                        <div class="product__details__text">
-                            <h3>${detail.name}</h3>
+                        <form action="" name="f" method="post">
+                            <div class="product__details__text">
+                                <h3>${detail.name}</h3>
 
-                            <div style="display: flex" class="product__details__price">${detail.price*(100-detail.discount)/100} $
-                                <div style="margin-left: 10%">
-                                    <span style="text-decoration: line-through; color: gray; font-size: 25px">${detail.price} $ </span>
-                                    <sup style="color: red; font-size: 15px">&nbsp(-20%)</sup>  
-                                </div>
-                            </div>
-
-
-                            <p>${detail.intro}</p>
-                            <div class="product__details__quantity">
-                                <div class="quantity">
-                                    <div class="pro-qty">
-                                        <input type="text" value="1">
+                                <div style="display: flex" class="product__details__price">${detail.price*(100-detail.discount)/100} $
+                                    <div style="margin-left: 10%">
+                                        <span style="text-decoration: line-through; color: gray; font-size: 25px">${detail.price} $ </span>
+                                        <sup style="color: red; font-size: 15px">&nbsp(-20%)</sup>  
                                     </div>
                                 </div>
+
+
+                                <p>${detail.intro}</p>
+                                <div class="product__details__quantity">
+                                    <div class="quantity">
+                                        <div class="pro-qty">
+                                            <input name="num" type="text" value="1">
+                                        </div>
+                                    </div>
+                                </div>
+                                <a onclick="addToCart('${detail.id}')" href="#" class="primary-btn">ADD TO CART</a>
+                                <a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a>
+                                <ul>
+                                    <li><b>Availability</b> <span>${detail.quantity - detail.sold} Product(s)</span></li>
+                                    <li><b>Sold</b> <span>${detail.sold} product(s). <samp></samp></span></li>
+                                    <li><b>Weight</b> <span>0.5 kg</span></li>
+                                    <li><b>Weight</b> <span>0.5 kg</span></li>
+                                </ul>
                             </div>
-                            <a href="#" class="primary-btn">ADD TO CARD</a>
-                            <a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a>
-                            <ul>
-                                <li><b>Availability</b> <span>${detail.quantity - detail.sold} Product(s)</span></li>
-                                <li><b>Sold</b> <span>${detail.sold} product(s). <samp></samp></span></li>
-                                <li><b>Weight</b> <span>0.5 kg</span></li>
-                                <li><b>Weight</b> <span>0.5 kg</span></li>
-                            </ul>
-                        </div>
+                        </form>
                     </div>
+
                     <div class="col-lg-12">
                         <div class="product__details__tab">
                             <ul class="nav nav-tabs" role="tablist">
@@ -129,8 +133,6 @@
 
                                     </div>
                                 </div>
-
-
                             </div>
                         </div>
                     </div>
@@ -185,7 +187,14 @@
         <script src="js/mixitup.min.js"></script>
         <script src="js/owl.carousel.min.js"></script>
         <script src="js/main.js"></script>
-
+        <!--Code JS-->
+        <script type="text/javascript">
+                                    function addToCart(id) {
+                                        var m = document.f.num.value;
+                                        document.f.action = "addtocart?id=" + id + "&num=" + m;
+                                        document.f.submit();
+                                    }
+        </script>
 
     </body>
 

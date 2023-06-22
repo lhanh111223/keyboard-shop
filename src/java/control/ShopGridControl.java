@@ -7,17 +7,21 @@ package control;
 import daoo.DAO;
 import daoo.FilterDAO;
 import entity.Brand;
+import entity.Cart;
 import entity.Category;
 import entity.Color;
 import entity.Feature;
+import entity.Item;
 import entity.Layout;
 import entity.Material;
 import entity.Product;
 import java.io.IOException;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -65,6 +69,27 @@ public class ShopGridControl extends HttpServlet {
         //all feature
         List<Feature> listFeature = fd.getAllFeature();
         request.setAttribute("listFeature", listFeature);
+        
+        
+        // number of items in cart
+        Cookie [] arr = request.getCookies();
+        String txt = "";
+        if(arr != null){
+            for(Cookie o : arr){
+                if(o.getName().equals("cart")){
+                    txt = txt + o.getValue();
+                }
+            }
+        }
+        Cart cart = new Cart(txt, listAll);
+        List<Item> listItem = cart.getItems();
+        int n;
+        if(listItem != null){
+            n = listItem.size();
+        } else{
+            n = 0;
+        }
+        request.setAttribute("size", n);
         
         request.getRequestDispatcher("ShopGrid.jsp").forward(request, response);
     }
