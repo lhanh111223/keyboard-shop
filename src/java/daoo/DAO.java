@@ -254,7 +254,7 @@ public class DAO {
         return null;
     }
 
-    // get catefory by id
+    // get category by id
     public Category getCateByID(String cid) {
         String query = "select * from Category\n"
                 + "where cid = ?";

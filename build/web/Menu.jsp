@@ -8,9 +8,9 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!-- Page Preloder -->
-<div id="preloder">
+<!--<div id="preloder">
     <div class="loader"></div>
-</div>
+</div>-->
 
 <!-- Header Section Begin -->
 <header class="header">
@@ -77,7 +77,7 @@
                         <li><a href="#">Pages</a>
                             <ul class="header__menu__dropdown">
                                 <li><a href="./shop-details.html">Shop Details</a></li>
-                                <li><a href="./shoping-cart.html">Shoping Cart</a></li>
+                                <li><a href="showcart">Shoping Cart</a></li>
                                 <li><a href="./checkout.html">Check Out</a></li>
                                 <li><a href="./blog-details.html">Blog Details</a></li>
                             </ul>
@@ -95,9 +95,12 @@
             <div class="col-lg-3">
                 <div class="header__cart">
                     <ul>
-                        <li><a href="showcart"><i class="fa fa-shopping-bag"></i> <span>${requestScope.size}</span></a></li>
+                        <li><a href="showcart"><i class="fa fa-shopping-bag"></i> 
+                                <span>${size}</span>
+                            </a>
+                        </li>
                     </ul>
-                    <div class="header__cart__price">cart price: <span>$150.00</span></div>
+                    <!--<div class="header__cart__price">cart price: <span>$150.00</span></div>-->
                 </div>
             </div>
         </div>

@@ -92,14 +92,19 @@ public class SortProductControl extends HttpServlet {
                 throw new AssertionError();
         }
         
-        String minPrice = request.getParameter("minP");
+        String minPrice = request.getParameter("minPrice");
         if(minPrice.isEmpty()){
             minPrice = "0";
         }
-        String maxPrice = request.getParameter("maxP");
+        String maxPrice = request.getParameter("maxPrice");
         if(maxPrice.isEmpty()){
             maxPrice = "1000";
         }
+        
+        request.setAttribute("minPrice", request.getParameter("minPrice"));
+        request.setAttribute("maxPrice", request.getParameter("maxPrice"));
+
+        
         String[] brand = request.getParameterValues("brandA");
         String[] color = request.getParameterValues("colorA");
         String[] layout = request.getParameterValues("layoutA");

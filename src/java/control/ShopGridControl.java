@@ -72,6 +72,8 @@ public class ShopGridControl extends HttpServlet {
         
         
         // number of items in cart
+//        DAO dao = new DAO();
+//        List<Product> listAll = dao.getAllProduct();
         Cookie [] arr = request.getCookies();
         String txt = "";
         if(arr != null){

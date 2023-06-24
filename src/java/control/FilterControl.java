@@ -43,7 +43,9 @@ public class FilterControl extends HttpServlet {
         FilterDAO fd = new FilterDAO();
         
         String minPrice = request.getParameter("minPrice").substring(1);
+        request.setAttribute("minPrice", minPrice);
         String maxPrice = request.getParameter("maxPrice").substring(1);
+        request.setAttribute("maxPrice", maxPrice);
         String[] brand = request.getParameterValues("brandF");
         request.setAttribute("brandA", brand);
         

@@ -32,7 +32,7 @@
                     </a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a
+<!--                    <a
                         class="nav-link dropdown-toggle"
                         href="#"
                         id="navbarDropdown"
@@ -42,12 +42,12 @@
                         aria-expanded="false">
                         <i class="far fa-file-alt"></i>
                         <span> Reports <i class="fas fa-angle-down"></i> </span>
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    </a>-->
+<!--                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="#">Daily Report</a>
                         <a class="dropdown-item" href="#">Weekly Report</a>
                         <a class="dropdown-item" href="#">Yearly Report</a>
-                    </div>
+                    </div>-->
                 </li>
                 <li class="nav-item">
                     <a class="nav-link active" href="loadmanageproduct?bid=${acc.brandID}">
@@ -55,7 +55,7 @@
                     </a>
                 </li>
 
-                <li class="nav-item">
+<!--                <li class="nav-item">
                     <a class="nav-link" href="addbrandacc">
                         <i class="far fa-user"></i> Accounts
                     </a>
@@ -77,7 +77,7 @@
                         <a class="dropdown-item" href="#">Billing</a>
                         <a class="dropdown-item" href="#">Customize</a>
                     </div>
-                </li>
+                </li>-->
             </ul>
             <ul class="navbar-nav">
                 <li class="nav-item">

@@ -87,14 +87,20 @@
                         <form action="" name="f" method="post">
                             <div class="product__details__text">
                                 <h3>${detail.name}</h3>
-
-                                <div style="display: flex" class="product__details__price">${detail.price*(100-detail.discount)/100} $
-                                    <div style="margin-left: 10%">
-                                        <span style="text-decoration: line-through; color: gray; font-size: 25px">${detail.price} $ </span>
-                                        <sup style="color: red; font-size: 15px">&nbsp(-20%)</sup>  
+                                <c:if test="${detail.discount > 0}">
+                                    <div style="display: flex" class="product__details__price">${detail.price*(100-detail.discount)/100} $
+                                        <div style="margin-left: 10%">
+                                            <span style="text-decoration: line-through; color: gray; font-size: 25px">${detail.price} $ </span>
+                                            <sup style="color: red; font-size: 15px">&nbsp${detail.discount}%</sup>  
+                                        </div>
                                     </div>
-                                </div>
+                                </c:if>
 
+                                <c:if test="${detail.discount == 0}">
+                                    <div style="display: flex" class="product__details__price">
+                                        ${detail.price*(100-detail.discount)/100} $
+                                    </div>
+                                </c:if>
 
                                 <p>${detail.intro}</p>
                                 <div class="product__details__quantity">
@@ -105,7 +111,14 @@
                                     </div>
                                 </div>
                                 <a onclick="addToCart('${detail.id}')" href="#" class="primary-btn">ADD TO CART</a>
-                                <a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a>
+                                <c:forEach items="${listItems}" var="li">
+                                    <span style="display: ${li.product.getId()==detail.id ?"inline":"none"}" class="">
+                                        <a  class="bg-success" 
+                                            style="text-decoration: none; color: white" href="showcart">&nbsp;ALREADY IN CART&nbsp;</a></span>
+                                </c:forEach>
+                                
+                                    <span style="display: ${pid==detail.id ?"block":"none"}" class="text-success">&nbsp;Added to cart sucessfully</span>
+                                
                                 <ul>
                                     <li><b>Availability</b> <span>${detail.quantity - detail.sold} Product(s)</span></li>
                                     <li><b>Sold</b> <span>${detail.sold} product(s). <samp></samp></span></li>

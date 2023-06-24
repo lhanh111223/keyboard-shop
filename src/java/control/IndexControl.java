@@ -10,6 +10,7 @@ import daoo.DAO;
 import daoo.FilterDAO;
 import entity.Cart;
 import entity.Category;
+import entity.Item;
 import entity.Product;
 import java.io.IOException;
 import jakarta.servlet.ServletException;
@@ -59,6 +60,27 @@ public class IndexControl extends HttpServlet {
         request.setAttribute("listC", listC);
         request.setAttribute("listLP", listLast);
         
+        // number of items in cart
+        List<Product> listAll = dao.getAllProduct();
+        request.setAttribute("listP", listAll);
+        Cookie [] arr = request.getCookies();
+        String txt = "";
+        if(arr != null){
+            for(Cookie o : arr){
+                if(o.getName().equals("cart")){
+                    txt = txt + o.getValue();
+                }
+            }
+        }
+        Cart cart = new Cart(txt, listAll);
+        List<Item> listItem = cart.getItems();
+        int n;
+        if(listItem != null){
+            n = listItem.size();
+        } else{
+            n = 0;
+        }
+        request.setAttribute("size", n);
         
         request.getRequestDispatcher("index.jsp").forward(request, response);
     } 

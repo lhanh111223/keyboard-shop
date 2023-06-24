@@ -98,7 +98,10 @@ public class AddToCartControl extends HttpServlet {
         response.addCookie(c);
         Cart cart = new Cart(txt, listAll);
         int size = cart.getItems().size();
+        request.setAttribute("listItems", cart.getItems());
         request.setAttribute("size", size);
+        request.setAttribute("pid", id);
+        request.setAttribute("numI", num);
         request.getRequestDispatcher("detail?pid="+id).forward(request, response);
     }
 

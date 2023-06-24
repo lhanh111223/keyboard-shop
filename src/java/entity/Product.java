@@ -9,18 +9,7 @@ package entity;
  * @author Hoang Anh
  */
 public class Product {
-    /*
-        id int IDENTITY(1,1) primary key,
-	[name] nvarchar(MAX),
-	price money,
-	quantity int,
-	sold int,
-	[image] nvarchar(MAX),
-	intro nvarchar(MAX),
-	[description] nvarchar(MAX),
-	cateID int,
-	brandID int,
-    */
+
     private int id;
     private String name;
     private double price;

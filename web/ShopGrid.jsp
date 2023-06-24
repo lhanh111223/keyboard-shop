@@ -221,8 +221,8 @@
                                                     </div>
                                                     <div class="range-slider">
                                                         <div class="price-input">
-                                                            <input name="minP" type="text" id="minamount">
-                                                            <input name="maxP" type="text" id="maxamount">
+                                                            <input name="minPrice" value="${minPrice}" type="text" id="minamount">
+                                                            <input name="maxPrice" value="${maxPrice}" type="text" id="maxamount">
                                                         </div>
                                                     </div>
                                                 </div>
