@@ -92,9 +92,6 @@ public class FilterControl extends HttpServlet {
         List<Product> list = fd.filter(brand, minPrice, maxPrice, color, layout, connect, material, cid, txt);
         request.setAttribute("listP", list);
         
-        
-        
-        
         request.getRequestDispatcher("ShopGrid.jsp").forward(request, response);
         
     } 

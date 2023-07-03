@@ -81,7 +81,7 @@ public class FilterDAO extends DBContext {
                 c.setCid(rs.getInt(9));
                 Brand b = new Brand();
                 b.setBid(rs.getInt(10));
-
+                
                 list.add(new Product(
                         rs.getInt(1),
                         rs.getString(2),

@@ -23,8 +23,7 @@ import jakarta.servlet.http.Part;
 public class EditProfileControl extends HttpServlet {
 
     /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
      *
      * @param request servlet request
      * @param response servlet response
@@ -34,6 +33,12 @@ public class EditProfileControl extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        AccountDAO ad = new AccountDAO();
+        HttpSession session = request.getSession();
+        Account a = (Account) session.getAttribute("acc");
+        Account act = ad.getActivity(a.getUsername());
+        request.setAttribute("act", act);
+        request.getRequestDispatcher("EditProfile.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -49,6 +54,7 @@ public class EditProfileControl extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+
     }
 
     /**
@@ -70,13 +76,16 @@ public class EditProfileControl extends HttpServlet {
         HttpSession session = request.getSession();
 
         AccountDAO ad = new AccountDAO();
+
         ad.editProfile(username, fullname, email, phone, avatar);
         Account acc = ad.getAccountProfile(username);
-        
+
         session.setAttribute("acc", acc);
         request.setAttribute("acc", acc);
         request.setAttribute("mess", "Your profile has been changed successfully");
-        
+
+        Account act = ad.getActivity(acc.getUsername());
+        request.setAttribute("act", act);
         request.getRequestDispatcher("EditProfile.jsp").forward(request, response);
     }
 

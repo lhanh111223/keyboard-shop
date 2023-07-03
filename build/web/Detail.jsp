@@ -103,27 +103,40 @@
                                 </c:if>
 
                                 <p>${detail.intro}</p>
-                                <div class="product__details__quantity">
+                                <c:if test="${detail.quantity - detail.sold != 0}">
+                                <div onclick="changeNum()" class="product__details__quantity">
                                     <div class="quantity">
                                         <div class="pro-qty">
-                                            <input name="num" type="text" value="1">
+                                            <input readonly name="num" type="text" value="1">
+                                            <input id="quantity" type="hidden" value="1">
                                         </div>
                                     </div>
                                 </div>
-                                <a onclick="addToCart('${detail.id}')" href="#" class="primary-btn">ADD TO CART</a>
+                                </c:if>
+                                <c:if test="${detail.quantity - detail.sold != 0}">
+                                <a id="add" onclick="addToCart('${detail.id}')" href="#" class="primary-btn">ADD TO CART</a>
+                                </c:if>
+                                <c:if test="${detail.quantity - detail.sold == 0}">
+                                    <a class="bg-danger" 
+                                       style="font-weight: bold; font-size: 20px; color: white" >&nbsp;&nbsp;OUT OF STOCK&nbsp;&nbsp;</a>
+                                </c:if>
+                                    
+                                    <p style="display: none" class="text-danger" id="outOfStock">OUT OF STOCK</p>
+                                
                                 <c:forEach items="${listItems}" var="li">
-                                    <span style="display: ${li.product.getId()==detail.id ?"inline":"none"}" class="">
-                                        <a  class="bg-success" 
-                                            style="text-decoration: none; color: white" href="showcart">&nbsp;ALREADY IN CART&nbsp;</a></span>
+                                        <span style="display: ${li.product.getId()==detail.id ?"inline":"none"}" class="">
+                                            <a  class="bg-success" 
+                                                style="text-decoration: none; color: white" href="showcart">&nbsp;ALREADY IN CART&nbsp;</a>
+                                        </span>
                                 </c:forEach>
-                                
-                                    <span style="display: ${pid==detail.id ?"block":"none"}" class="text-success">&nbsp;Added to cart sucessfully</span>
-                                
+
+                                <span style="display: ${pid==detail.id ?"block":"none"}" class="text-success">&nbsp;Added to cart sucessfully</span>
+
                                 <ul>
+                                    <input type="hidden" value="${detail.quantity - detail.sold}" id="instock">
                                     <li><b>Availability</b> <span>${detail.quantity - detail.sold} Product(s)</span></li>
                                     <li><b>Sold</b> <span>${detail.sold} product(s). <samp></samp></span></li>
-                                    <li><b>Weight</b> <span>0.5 kg</span></li>
-                                    <li><b>Weight</b> <span>0.5 kg</span></li>
+                                    <li><b>Views</b> <span>${detail.view}</span></li>
                                 </ul>
                             </div>
                         </form>
@@ -207,6 +220,30 @@
                                         document.f.action = "addtocart?id=" + id + "&num=" + m;
                                         document.f.submit();
                                     }
+
+                                    function changeNum() {
+                                        var out = document.getElementById("outOfStock");
+                                        var instock = document.getElementById("instock");
+                                        var avai = parseInt(instock.value);
+                                        var num = document.getElementById("quantity").value;
+                                        console.log(num);
+                                        
+                                        if(num < 1){
+                                            var add = document.getElementById("add");
+                                            add.style.display = "none";
+                                        }
+                                        else if(num > avai){
+                                            var add = document.getElementById("add");
+                                            add.style.display = "none";
+                                            out.style.display = "inline";
+                                        }
+                                        else if(num <= avai){
+                                            var add = document.getElementById("add");
+                                            add.style.display = "inline";
+                                            out.style.display = "none";
+                                        }
+                                    }
+
         </script>
 
     </body>

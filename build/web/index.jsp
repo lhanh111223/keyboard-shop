@@ -98,9 +98,8 @@
                                 <div class="featured__item">
                                     <div class="featured__item__pic set-bg" data-setbg="${o.image}">
                                         <ul class="featured__item__pic__hover">
-                                            <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                                            <li><a href="detail?pid=${o.id}"><i class="fa fa-eye"></i></a></li>
+                                            <li><a onclick="alertAdd()" href="addtocart?id=${o.id}&num=1"><i class="fa fa-shopping-cart"></i></a></li>
                                         </ul>
                                     </div>
                                     <div class="featured__item__text">
@@ -116,9 +115,8 @@
                                 <div class="featured__item">
                                     <div class="featured__item__pic set-bg" data-setbg="${o.image}">
                                         <ul class="featured__item__pic__hover">
-                                            <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                                            <li><a href="detail?pid=${o.id}"><i class="fa fa-eye"></i></a></li>
+                                            <li><a onclick="alertAdd()" href="addtocart?id=${o.id}&num=1"><i class="fa fa-shopping-cart"></i></a></li>
                                         </ul>
                                     </div>
                                     <div class="featured__item__text">
@@ -137,9 +135,8 @@
                                 <div class="featured__item">
                                     <div class="featured__item__pic set-bg" data-setbg="${o.image}">
                                         <ul class="featured__item__pic__hover">
-                                            <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                                            <li><a href="detail?pid=${o.id}"><i class="fa fa-eye"></i></a></li>
+                                            <li><a onclick="alertAdd()" href="addtocart?id=${o.id}&num=1"><i class="fa fa-shopping-cart"></i></a></li>
                                         </ul>
                                     </div>
                                     <div class="featured__item__text">
@@ -155,9 +152,8 @@
                                 <div class="featured__item">
                                     <div class="featured__item__pic set-bg" data-setbg="${o.image}">
                                         <ul class="featured__item__pic__hover">
-                                            <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                                            <li><a href="detail?pid=${o.id}"><i class="fa fa-eye"></i></a></li>
+                                            <li><a onclick="alertAdd()" href="addtocart?id=${o.id}&num=1"><i class="fa fa-shopping-cart"></i></a></li>
                                         </ul>
                                     </div>
                                     <div class="featured__item__text">
@@ -176,9 +172,8 @@
                                 <div class="featured__item">
                                     <div class="featured__item__pic set-bg" data-setbg="${o.image}">
                                         <ul class="featured__item__pic__hover">
-                                            <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                                            <li><a href="detail?pid=${o.id}"><i class="fa fa-eye"></i></a></li>
+                                            <li><a onclick="alertAdd()" href="addtocart?id=${o.id}&num=1"><i class="fa fa-shopping-cart"></i></a></li>
                                         </ul>
                                     </div>
                                     <div class="featured__item__text">
@@ -194,9 +189,8 @@
                                 <div class="featured__item">
                                     <div class="featured__item__pic set-bg" data-setbg="${o.image}">
                                         <ul class="featured__item__pic__hover">
-                                            <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                                            <li><a href="detail?pid=${o.id}"><i class="fa fa-eye"></i></a></li>
+                                            <li><a onclick="alertAdd()" href="addtocart?id=${o.id}&num=1"><i class="fa fa-shopping-cart"></i></a></li>
                                         </ul>
                                     </div>
                                     <div class="featured__item__text">
@@ -215,9 +209,8 @@
                                 <div class="featured__item">
                                     <div class="featured__item__pic set-bg" data-setbg="${o.image}">
                                         <ul class="featured__item__pic__hover">
-                                            <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                                            <li><a href="detail?pid=${o.id}"><i class="fa fa-eye"></i></a></li>
+                                            <li><a onclick="alertAdd()" href="addtocart?id=${o.id}&num=1"><i class="fa fa-shopping-cart"></i></a></li>
                                         </ul>
                                     </div>
                                     <div class="featured__item__text">
@@ -233,9 +226,8 @@
                                 <div class="featured__item">
                                     <div class="featured__item__pic set-bg" data-setbg="${o.image}">
                                         <ul class="featured__item__pic__hover">
-                                            <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                                            <li><a href="detail?pid=${o.id}"><i class="fa fa-eye"></i></a></li>
+                                            <li><a onclick="alertAdd()" href="addtocart?id=${o.id}&num=1"><i class="fa fa-shopping-cart"></i></a></li>
                                         </ul>
                                     </div>
                                     <div class="featured__item__text">
@@ -258,12 +250,12 @@
                 <div class="row">
                     <div class="col-lg-6 col-md-6 col-sm-6">
                         <div class="banner__pic">
-                            <img src="img/ShopnowLeft.png" alt=""/>
+                            <a href="shopgrid"><img src="img/Shopnow.png" alt=""/></a>
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-6 col-sm-6">
                         <div class="banner__pic">
-                            <img src="img/banner/banner-2.jpg" alt="">
+                            <a href="shopgrid"><img src="img/Shop.png" alt=""/></a>
                         </div>
                     </div>
                 </div>
@@ -289,9 +281,8 @@
                                          data-setbg="${o.image}">
                                         <div class="product__discount__percent">-${o.discount}%</div>
                                         <ul class="product__item__pic__hover">
-                                            <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                            <li><a href="detail?pid=${o.id}"><i class="fa fa-retweet"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                                            <li><a href="detail?pid=${o.id}"><i class="fa fa-eye"></i></a></li>
+                                            <li><a onclick="alertAdd()" href="addtocart?id=${o.id}&num=1"><i class="fa fa-shopping-cart"></i></a></li>
                                         </ul>
                                     </div>
                                     <div class="product__discount__item__text">
@@ -384,54 +375,54 @@
                                 <div class="latest-prdouct__slider__item">
                                     <c:forEach items="${listTS}" var="o" begin="0" end="2">   
                                         <c:if test="${o.discount == 0}">
-                                        <a href="detail?pid=${o.id}" class="latest-product__item">
-                                            <div class="latest-product__item__pic">
-                                                <img src="${o.image}" alt="">
-                                            </div>
-                                            <div class="latest-product__item__text">
-                                                <h6>${o.name}</h6>
-                                                <span>${o.price} $</span>
-                                            </div>
-                                        </a>
+                                            <a href="detail?pid=${o.id}" class="latest-product__item">
+                                                <div class="latest-product__item__pic">
+                                                    <img src="${o.image}" alt="">
+                                                </div>
+                                                <div class="latest-product__item__text">
+                                                    <h6>${o.name}</h6>
+                                                    <span>${o.price} $</span>
+                                                </div>
+                                            </a>
                                         </c:if>
                                         <c:if test="${o.discount > 0}">
-                                        <a href="detail?pid=${o.id}" class="latest-product__item">
-                                            <div class="latest-product__item__pic">
-                                                <img src="${o.image}" alt="">
-                                            </div>
-                                            <div class="latest-product__item__text">
-                                                <h6>${o.name}</h6>
-                                                <span style="text-decoration: line-through">${o.price} $ <sup style="color: red">&nbsp(-20%)</sup> </span>
-                                                <span>${o.price*(100-o.discount)/100} $</span>
-                                            </div>
-                                        </a>
+                                            <a href="detail?pid=${o.id}" class="latest-product__item">
+                                                <div class="latest-product__item__pic">
+                                                    <img src="${o.image}" alt="">
+                                                </div>
+                                                <div class="latest-product__item__text">
+                                                    <h6>${o.name}</h6>
+                                                    <span style="text-decoration: line-through">${o.price} $ <sup style="color: red">&nbsp(-20%)</sup> </span>
+                                                    <span>${o.price*(100-o.discount)/100} $</span>
+                                                </div>
+                                            </a>
                                         </c:if>
                                     </c:forEach>    
                                 </div>
                                 <div class="latest-prdouct__slider__item">
                                     <c:forEach items="${listTS}" var="o" begin="3" end="5">
                                         <c:if test="${o.discount == 0}">
-                                        <a href="detail?pid=${o.id}" class="latest-product__item">
-                                            <div class="latest-product__item__pic">
-                                                <img src="${o.image}" alt="">
-                                            </div>
-                                            <div class="latest-product__item__text">
-                                                <h6>${o.name}</h6>
-                                                <span>${o.price} $</span>
-                                            </div>
-                                        </a>
+                                            <a href="detail?pid=${o.id}" class="latest-product__item">
+                                                <div class="latest-product__item__pic">
+                                                    <img src="${o.image}" alt="">
+                                                </div>
+                                                <div class="latest-product__item__text">
+                                                    <h6>${o.name}</h6>
+                                                    <span>${o.price} $</span>
+                                                </div>
+                                            </a>
                                         </c:if>
                                         <c:if test="${o.discount > 0}">
-                                        <a href="detail?pid=${o.id}" class="latest-product__item">
-                                            <div class="latest-product__item__pic">
-                                                <img src="${o.image}" alt="">
-                                            </div>
-                                            <div class="latest-product__item__text">
-                                                <h6>${o.name}</h6>
-                                                <span style="text-decoration: line-through">${o.price} $ <sup style="color: red">&nbsp(-20%)</sup> </span>
-                                                <span>${o.price*(100-o.discount)/100} $</span>
-                                            </div>
-                                        </a>
+                                            <a href="detail?pid=${o.id}" class="latest-product__item">
+                                                <div class="latest-product__item__pic">
+                                                    <img src="${o.image}" alt="">
+                                                </div>
+                                                <div class="latest-product__item__text">
+                                                    <h6>${o.name}</h6>
+                                                    <span style="text-decoration: line-through">${o.price} $ <sup style="color: red">&nbsp(-20%)</sup> </span>
+                                                    <span>${o.price*(100-o.discount)/100} $</span>
+                                                </div>
+                                            </a>
                                         </c:if>
                                     </c:forEach>    
                                 </div>
@@ -459,45 +450,45 @@
                     <div class="col-lg-4 col-md-4 col-sm-6">
                         <div class="blog__item">
                             <div class="blog__item__pic">
-                                <img src="img/blog/blog-1.jpg" alt="">
+                                <img src="https://keebnews.com/wp-content/uploads/2022/11/best-mechanical-keyboards.png?ezimgfmt=rs%3Adevice%2Frscb1-1" alt="">
                             </div>
                             <div class="blog__item__text">
                                 <ul>
-                                    <li><i class="fa fa-calendar-o"></i> May 4,2019</li>
-                                    <li><i class="fa fa-comment-o"></i> 5</li>
+                                    <li><i class="fa fa-calendar-o"></i> July 10, 2023</li>
+                                    <li><i class="fa fa-comment-o"></i> 10</li>
                                 </ul>
-                                <h5><a href="#">Cooking tips make cooking simple</a></h5>
-                                <p>Sed quia non numquam modi tempora indunt ut labore et dolore magnam aliquam quaerat </p>
+                                <h5><a href="https://keebnews.com/best-mechanical-keyboards/">The 29 Best Mechanical Keyboards, RANKED (For 2023)</a></h5>
+                                <p>I can honestly say that my LIFE was changed forever…when I accidentally got my first mechanical keyboard.</p>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-6">
                         <div class="blog__item">
                             <div class="blog__item__pic">
-                                <img src="img/blog/blog-2.jpg" alt="">
+                                <img src="https://keebnews.com/wp-content/uploads/2022/11/best-gaming-keyboard.png?ezimgfmt=rs%3Adevice%2Frscb1-1" alt="">
                             </div>
                             <div class="blog__item__text">
                                 <ul>
-                                    <li><i class="fa fa-calendar-o"></i> May 4,2019</li>
-                                    <li><i class="fa fa-comment-o"></i> 5</li>
+                                    <li><i class="fa fa-calendar-o"></i> July 10, 2023</li>
+                                    <li><i class="fa fa-comment-o"></i> 10</li>
                                 </ul>
-                                <h5><a href="#">6 ways to prepare breakfast for 30</a></h5>
-                                <p>Sed quia non numquam modi tempora indunt ut labore et dolore magnam aliquam quaerat </p>
+                                <h5><a href="https://keebnews.com/best-gaming-keyboards/">The 10 Best Gaming Keyboards (For Every Budget)</a></h5>
+                                <p>If you’re reading this, you’re probably ready to step up your gaming and start clacking & thocking your way to pwning noobs…but there’s just one probably. </p>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-6">
                         <div class="blog__item">
                             <div class="blog__item__pic">
-                                <img src="img/blog/blog-3.jpg" alt="">
+                                <img src="https://keebnews.com/wp-content/uploads/2022/12/Image-2022-12-05-at-8.42.14-AM.png?ezimgfmt=rs%3Adevice%2Frscb1-1" alt="">
                             </div>
                             <div class="blog__item__text">
                                 <ul>
-                                    <li><i class="fa fa-calendar-o"></i> May 4,2019</li>
-                                    <li><i class="fa fa-comment-o"></i> 5</li>
+                                    <li><i class="fa fa-calendar-o"></i> July 10, 2023</li>
+                                    <li><i class="fa fa-comment-o"></i> 10</li>
                                 </ul>
-                                <h5><a href="#">Visit the clean farm in the US</a></h5>
-                                <p>Sed quia non numquam modi tempora indunt ut labore et dolore magnam aliquam quaerat </p>
+                                <h5><a href="https://keebnews.com/what-are-gateron-milky-switches/">What are Gateron Milky switches? (Details & Differences)</a></h5>
+                                <p>Most Gateron switches have a housing that is made of Nylon (bottom) and Polycarbonate (PC) top, but the Milky switches use Nylon for both the bottom and top housing (and the top housing gives a semi-transparent “milky” appearance. </p>
                             </div>
                         </div> 
                     </div>

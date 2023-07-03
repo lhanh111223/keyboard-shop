@@ -39,6 +39,7 @@ public class DetailControl extends HttpServlet {
         String id = request.getParameter("pid");
 
         DAO dao = new DAO();
+        dao.addViewProduct(id);
 
         Product p = dao.getProductByID(id);
         List<Category> listC = dao.getAllCategory();

@@ -22,6 +22,7 @@ public class Product {
     private Brand brand;
     private double discount;
     private ProductDetail productDetail;
+    private int view;
     
     
 
@@ -42,6 +43,23 @@ public class Product {
         this.discount = discount;
     }
 
+    public Product(int id, String name, double price, int quantity, int sold, String image, String intro, String description, Category category, Brand brand, double discount, int view) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+        this.quantity = quantity;
+        this.sold = sold;
+        this.image = image;
+        this.intro = intro;
+        this.description = description;
+        this.category = category;
+        this.brand = brand;
+        this.discount = discount;
+        this.view = view;
+    }
+    
+    
+
     public Product(int id, String name, double price, int quantity, int sold, String image, String intro, String description, Category category, Brand brand, double discount, ProductDetail productDetail) {
         this.id = id;
         this.name = name;
@@ -57,6 +75,14 @@ public class Product {
         this.productDetail = productDetail;
     }
 
+    public int getView() {
+        return view;
+    }
+
+    public void setView(int view) {
+        this.view = view;
+    }
+    
     public ProductDetail getProductDetail() {
         return productDetail;
     }

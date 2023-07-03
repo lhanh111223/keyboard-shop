@@ -105,6 +105,7 @@ public class ManagerDAO extends DBContext {
                 la.setLayout_id(rs.getInt(14));
                 Feature fe = new Feature();
                 fe.setFeature_id(rs.getInt(15));
+
                 ProductDetail pd = new ProductDetail();
                 pd.setCid(co);
                 pd.setMid(ma);
@@ -186,7 +187,7 @@ public class ManagerDAO extends DBContext {
             String cateID, String brandID, String discount, String cid, String mid, String lid, String fid) {
 
         String sql = "insert into Product\n"
-                + "values(?,?,?,?,?,?,?,?,?,?)\n"
+                + "values(?,?,?,?,?,?,?,?,?,?,0)\n"
                 + "\n"
                 + "DECLARE @productID int;\n"
                 + "SET @productID = SCOPE_IDENTITY();\n"
@@ -355,8 +356,21 @@ public class ManagerDAO extends DBContext {
 
     // delete account
     public void deleteAccount(String aid) {
-        String sql = "delete from Account\n"
-                + "where aid =  ?";
+        String sql = "UPDATE Account\n"
+                + "SET isAdmin = 2\n"
+                + "WHERE aid = ?";
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, aid);
+            ps.executeUpdate();
+        } catch (Exception e) {
+        }
+    }
+    public void unlockAccount(String aid) {
+        String sql = "UPDATE Account\n"
+                + "SET isAdmin = 0\n"
+                + "WHERE aid = ?";
         try {
             conn = new DBContext().getConnection();
             ps = conn.prepareStatement(sql);
@@ -411,19 +425,19 @@ public class ManagerDAO extends DBContext {
             ps.setString(7, avatar);
             ps.setString(8, aid);
             ps.executeUpdate();
-            
+
         } catch (Exception e) {
         }
     }
 
     public static void main(String[] args) {
         ManagerDAO mp = new ManagerDAO();
-        List<Product> list = mp.loadAllProduct();
-        for (Product product : list) {
-            System.out.println(product.toString());
-        }
-//        Product a = mp.getProductDetail("1");
-//        System.out.println(a.getCategory().getCid());
+//        List<Product> list = mp.loadAllProduct();
+//        for (Product product : list) {
+//            System.out.println(product.toString());
+//        }
+        Product a = mp.getProductDetail("1");
+        System.out.println(a);
     }
 
 }

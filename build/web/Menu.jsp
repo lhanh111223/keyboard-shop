@@ -41,7 +41,7 @@
                                 <div>Edit</div>
                                 <span class="arrow_carrot-down"></span>
                                 <ul>
-                                    <li><a href="EditProfile.jsp">Profile</a></li>
+                                    <li><a href="editprofile">Profile</a></li>
                                     <li><a href="ChangePassword.jsp">Password</a></li>
                                 </ul>
                             </c:if>
@@ -72,23 +72,17 @@
                 <nav class="header__menu">
                     <ul>
                     <c:set var="tag" value="${pageContext.request.requestURL}"></c:set>
+                    
                         <li class="${(tag=="http://localhost:9999/fkbshop/index.jsp")?"active":""}"><a href="index">Home</a></li>
                         <li class="${(tag=="http://localhost:9999/fkbshop/ShopGrid.jsp")?"active":""}"><a href="shopgrid">Shop</a></li>
-                        <li><a href="#">Pages</a>
-                            <ul class="header__menu__dropdown">
-                                <li><a href="./shop-details.html">Shop Details</a></li>
-                                <li><a href="showcart">Shoping Cart</a></li>
-                                <li><a href="./checkout.html">Check Out</a></li>
-                                <li><a href="./blog-details.html">Blog Details</a></li>
-                            </ul>
-                        </li>
+                        <li><a href="showcart">Shoping Cart</a></li>
+                        <li><a href="checkout">Check Out</a></li>
                         <c:if test="${sessionScope.acc.isAdmin==0 && acc.brandID != 0}">
                             <li><a href="loadmanageproduct?bid=${acc.brandID}">Manage Product</a></li>
                         </c:if>
                         <c:if test="${sessionScope.acc.isAdmin==1 && acc.brandID == 0}">
                             <li><a href="loadmanageproduct">Admin manage</a></li>
                         </c:if>
-                        <li><a href="./contact.html">Contact</a></li>
                     </ul>
                 </nav>
             </div>

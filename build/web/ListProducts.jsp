@@ -12,7 +12,8 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-        <title>Product Page - Admin HTML Template</title>
+        <title>Manage</title>
+        <link rel="icon" type="image/x-icon" href="https://upload.wikimedia.org/wikipedia/en/thumb/7/7a/Manchester_United_FC_crest.svg/1200px-Manchester_United_FC_crest.svg.png"/>
         <link
             rel="stylesheet"
             href="https://fonts.googleapis.com/css?family=Roboto:400,700"
@@ -33,6 +34,7 @@
         <jsp:include page="NavbarManage.jsp"></jsp:include>
             <div class="container mt-5">
                 <div class="row tm-content-row">
+                <c:if test="${sessionScope.acc.isAdmin!=1 && acc.brandID != 0}">
                     <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 tm-block-col">
                         <div class="tm-bg-primary-dark tm-block tm-block-products">
                             <div class="tm-product-table-container">
@@ -49,43 +51,42 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    <c:forEach items="${requestScope.list}" var="o">
-                                        <c:if test="${o.id != 0}">
-                                            <tr>
-                                                <td><a href="updateproduct?id=${o.id}" class="tm-product-delete-link">
-                                                        <i class="far fa-edit fa-lg" style="color: white"></i>
-                                                    </a></td>
-                                                <td class="tm-product-name">${o.name}</td>
-                                                <td>${o.sold}</td>
-                                                <td>${o.quantity - o.sold}</td>
-                                                <td>${o.price}</td>
-                                                <td>
-                                                    <a onclick="return confirm('Do you want to delete this PRODUCT. This action can not undone')" 
-                                                       href="deleteproduct?id=${o.id}&brandID=${o.getBrand().getBid()}" class="tm-product-delete-link">
-                                                        <i class="far fa-trash-alt tm-product-delete-icon"></i>
-                                                    </a>
+                                        <c:forEach items="${requestScope.list}" var="o">
+                                            <c:if test="${o.id != 0}">
+                                                <tr>
+                                                    <td><a href="updateproduct?id=${o.id}" class="tm-product-delete-link">
+                                                            <i class="far fa-edit fa-lg" style="color: white"></i>
+                                                        </a></td>
+                                                    <td class="tm-product-name">${o.name}</td>
+                                                    <td>${o.sold}</td>
+                                                    <td>${o.quantity - o.sold}</td>
+                                                    <td>${o.price}</td>
+                                                    <td>
+                                                        <a onclick="return confirm('Do you want to delete this PRODUCT. This action can not undone')" 
+                                                           href="deleteproduct?id=${o.id}&brandID=${o.getBrand().getBid()}" class="tm-product-delete-link">
+                                                            <i class="far fa-trash-alt tm-product-delete-icon"></i>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            </c:if>
+                                        </c:forEach>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- table container -->
+                            <a href="addproduct"
+                               class="btn btn-primary btn-block text-uppercase mb-3">Add new product</a>
 
-                                                </td>
-
-                                            </tr>
-                                        </c:if>
-                                    </c:forEach>
-                                </tbody>
-                            </table>
+                            <c:if test="${mess != null}">
+                                <a href="index">
+                                    <button class="btn btn-primary btn-block text-uppercase">
+                                        ${mess}
+                                    </button>
+                                </a>
+                            </c:if>
                         </div>
-                        <!-- table container -->
-                        <a
-                            href="addproduct"
-                            class="btn btn-primary btn-block text-uppercase mb-3">Add new product</a>
-                        <c:if test="${mess != null}">
-                            <a href="index">
-                                <button class="btn btn-primary btn-block text-uppercase">
-                                    ${mess}
-                                </button>
-                            </a>
-                        </c:if>
                     </div>
-                </div>
+                </c:if>   
                 <c:if test="${sessionScope.acc.isAdmin==1 && acc.brandID == 0}">    
                     <!--list category-->
                     <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 tm-block-col">
@@ -189,34 +190,43 @@
                                     <h3 style="color: white">List Account</h3>
                                     <thead>
                                         <tr>
-                                            <th scope="col">&nbsp;</th>
+                                            <th scope="col">Edit</th>
                                             <th scope="col">Fullname</th>
                                             <th scope="col">Username</th>
                                             <th scope="col">Role</th>
-                                            <th scope="col">&nbsp;</th>
+                                            <th scope="col">Status</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <c:forEach items="${requestScope.listA}" var="o">
-                                            <c:if test="${o.isAdmin == 0 }">
+                                            <c:if test="${o.isAdmin == 0 || o.isAdmin == 2}">
                                                 <tr>
                                                     <c:if test="${o.brandID != 0}">
-                                                    <td><a href="updatebrandacc?aid=${o.id}" class="tm-product-delete-link">
-                                                            <i class="far fa-edit fa-lg" style="color: white"></i>
-                                                        </a></td>
-                                                    </c:if> 
-                                                    <c:if test="${o.brandID == 0}">
-                                                    <td>&nbsp;</td>
+                                                        <td><a href="updatebrandacc?aid=${o.id}" class="tm-product-delete-link">
+                                                                <i class="far fa-edit fa-lg" style="color: white"></i>
+                                                            </a></td>
+                                                        </c:if> 
+                                                        <c:if test="${o.brandID == 0}">
+                                                        <td>&nbsp;</td>
                                                     </c:if>
                                                     <td class="tm-product-name">${o.fullname}</td>
                                                     <td>${o.username}</td>
                                                     <td>${o.brandID == 0 ?"User":"Seller"}</td>
                                                     <td>
-                                                        <a onclick="return confirm('Do you want to delete this ACCOUNT. This action can not undone')" 
+                                                        <!--status unlock-->
+                                                        <c:if test="${o.isAdmin == 0 }">
+                                                        <a onclick="return confirm('Do you want to BLOCK this ACCOUNT ?')" 
                                                            href="deleteaccount?aid=${o.id}" class="tm-product-delete-link">
-                                                            <i class="far fa-trash-alt tm-product-delete-icon"></i>
+                                                            <i class="fa fa-unlock-alt" aria-hidden="true"></i>
                                                         </a>
-
+                                                        </c:if>
+                                                        <!--status blocked-->
+                                                        <c:if test="${o.isAdmin == 2 }">
+                                                        <a onclick="return confirm('Do you want to UNBLOCK this ACCOUNT ?')" 
+                                                           href="unlock?aid=${o.id}" class="tm-product-delete-link">
+                                                            <i class="fa fa-lock" aria-hidden="true"></i>
+                                                        </a>
+                                                        </c:if>
                                                     </td>
                                                 </c:if>
                                             </tr>

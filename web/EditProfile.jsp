@@ -13,7 +13,8 @@
 <!------ Include the above in your HEAD tag ---------->
 
 <head>
-    <title>Bootstrap Example</title>
+    <title>Edit Profile</title>
+    <link rel="icon" type="image/x-icon" href="https://upload.wikimedia.org/wikipedia/en/thumb/7/7a/Manchester_United_FC_crest.svg/1200px-Manchester_United_FC_crest.svg.png"/>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -47,10 +48,9 @@
 
                 <ul class="list-group">
                     <li class="list-group-item text-muted">Activity <i class="fa fa-dashboard fa-1x"></i></li>
-                    <li class="list-group-item text-right"><span class="pull-left"><strong>Shares</strong></span> 125</li>
-                    <li class="list-group-item text-right"><span class="pull-left"><strong>Likes</strong></span> 13</li>
-                    <li class="list-group-item text-right"><span class="pull-left"><strong>Posts</strong></span> 37</li>
-                    <li class="list-group-item text-right"><span class="pull-left"><strong>Followers</strong></span> 78</li>
+                    <li class="list-group-item text-right"><span class="pull-left"><strong>Bills</strong></span> ${act.bill}</li>
+                    <li class="list-group-item text-right"><span class="pull-left"><strong>The amount paid</strong></span> ${act.paid} $</li>
+                    <li class="list-group-item text-right"><span class="pull-left"><strong>Products purchased</strong></span> ${act.noproducts}</li>
                 </ul> 
 
 

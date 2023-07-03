@@ -40,7 +40,7 @@ public class DeleteAccountControl extends HttpServlet {
         if (a != null) {
             if (a.getIsAdmin() == 1) {
                 mp.deleteAccount(aid);
-                request.setAttribute("messAcc", "This account has been deleted successfully");
+                request.setAttribute("messAcc", "This account has been blocked successfully");
                 request.getRequestDispatcher("loadmanageproduct").forward(request, response);
             }
         } else {

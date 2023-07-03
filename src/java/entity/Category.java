@@ -12,6 +12,7 @@ public class Category {
     private int cid;
     private String cname;
     private int quantity;
+    private double revenue;
 
     public Category() {
     }
@@ -21,8 +22,6 @@ public class Category {
         this.cname = cname;
         this.quantity = quantity;
     }
-    
-    
 
     public Category(int cid, String cname) {
         this.cid = cid;
@@ -36,9 +35,15 @@ public class Category {
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
-    
-    
 
+    public double getRevenue() {
+        return revenue;
+    }
+
+    public void setRevenue(double revenue) {
+        this.revenue = revenue;
+    }
+    
     public int getCid() {
         return cid;
     }

@@ -26,7 +26,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mx-auto h-100">
                 <li class="nav-item">
-                    <a class="nav-link" href="index.html">
+                    <a onclick="activeDash()" id="dash" class="nav-link" href="dashboard?bid=${acc.brandID}">
                         <i class="fas fa-tachometer-alt"></i> Dashboard
                         <span class="sr-only">(current)</span>
                     </a>
@@ -50,7 +50,7 @@
                     </div>-->
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="loadmanageproduct?bid=${acc.brandID}">
+                    <a id="product" onclick="activeProd()" class="nav-link" href="loadmanageproduct?bid=${acc.brandID}">
                         <i class="fas fa-shopping-cart"></i> Products
                     </a>
                 </li>

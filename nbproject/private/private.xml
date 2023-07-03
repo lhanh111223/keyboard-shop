@@ -3,19 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Hoang%20Anh/Documents/NetBeansProjects/z_fkb_shop/src/java/control/ShopGridControl.java</file>
-            <file>file:/C:/Users/Hoang%20Anh/Documents/NetBeansProjects/z_fkb_shop/web/ShoppingCart.jsp</file>
-            <file>file:/C:/Users/Hoang%20Anh/Documents/NetBeansProjects/z_fkb_shop/web/Menu.jsp</file>
-            <file>file:/C:/Users/Hoang%20Anh/Documents/NetBeansProjects/z_fkb_shop/web/Detail.jsp</file>
-            <file>file:/C:/Users/Hoang%20Anh/Documents/NetBeansProjects/z_fkb_shop/src/java/entity/Product.java</file>
             <file>file:/C:/Users/Hoang%20Anh/Documents/NetBeansProjects/z_fkb_shop/web/ShopGrid.jsp</file>
-            <file>file:/C:/Users/Hoang%20Anh/Documents/NetBeansProjects/z_fkb_shop/src/java/control/DetailControl.java</file>
-            <file>file:/C:/Users/Hoang%20Anh/Documents/NetBeansProjects/z_fkb_shop/src/java/entity/Item.java</file>
-            <file>file:/C:/Users/Hoang%20Anh/Documents/NetBeansProjects/z_fkb_shop/web/index.jsp</file>
-            <file>file:/C:/Users/Hoang%20Anh/Documents/NetBeansProjects/z_fkb_shop/src/java/control/FilterControl.java</file>
-            <file>file:/C:/Users/Hoang%20Anh/Documents/NetBeansProjects/z_fkb_shop/src/java/control/SortProductControl.java</file>
-            <file>file:/C:/Users/Hoang%20Anh/Documents/NetBeansProjects/z_fkb_shop/src/java/control/AddToCartControl.java</file>
-            <file>file:/C:/Users/Hoang%20Anh/Documents/NetBeansProjects/z_fkb_shop/src/java/control/ProcessControl.java</file>
+            <file>file:/C:/Users/Hoang%20Anh/Documents/NetBeansProjects/z_fkb_shop/src/java/control/SearchControl.java</file>
+            <file>file:/C:/Users/Hoang%20Anh/Documents/NetBeansProjects/z_fkb_shop/src/java/control/SearchByAjax.java</file>
+            <file>file:/C:/Users/Hoang%20Anh/Documents/NetBeansProjects/z_fkb_shop/web/Hero.jsp</file>
         </group>
     </open-files>
 </project-private>

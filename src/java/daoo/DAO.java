@@ -21,7 +21,7 @@ import java.util.List;
  * @author Hoang Anh
  */
 public class DAO {
-    
+
     Connection conn;
     PreparedStatement ps = null;
     ResultSet rs = null;
@@ -30,7 +30,7 @@ public class DAO {
     public List<Category> getAllCategory() {
         FilterDAO cd = new FilterDAO();
         List<Category> list = new ArrayList<>();
-        
+
         String query = "select * from Category";
         try {
             conn = new DBContext().getConnection();
@@ -44,7 +44,7 @@ public class DAO {
             }
         } catch (Exception e) {
         }
-        
+
         return list;
     }
 
@@ -61,7 +61,7 @@ public class DAO {
                 c.setCid(rs.getInt(9));
                 Brand b = new Brand();
                 b.setBid(rs.getInt(10));
-                
+
                 list.add(new Product(
                         rs.getInt(1),
                         rs.getString(2),
@@ -74,7 +74,7 @@ public class DAO {
                         c,
                         b,
                         rs.getDouble(11)));
-                
+
             }
         } catch (Exception e) {
         }
@@ -85,7 +85,7 @@ public class DAO {
     public Account login(String user, String pass) {
         String query = "select * from Account\n"
                 + "where username = ? and [password] = ?";
-        
+
         try {
             conn = new DBContext().getConnection();
             ps = conn.prepareStatement(query);
@@ -106,7 +106,7 @@ public class DAO {
             }
         } catch (Exception e) {
         }
-        
+
         return null;
     }
 
@@ -139,7 +139,7 @@ public class DAO {
     public void signup(String fullname, String email, String user, String pass, String phone) {
         String query = "insert into Account\n"
                 + "values (?, ?, ?, ?, ?, 0, null)";
-        
+
         try {
             conn = new DBContext().getConnection();
             ps = conn.prepareStatement(query);
@@ -168,7 +168,7 @@ public class DAO {
                 c.setCid(rs.getInt(9));
                 Brand b = new Brand();
                 b.setBid(rs.getInt(10));
-                
+
                 list.add(new Product(
                         rs.getInt(1),
                         rs.getString(2),
@@ -184,7 +184,7 @@ public class DAO {
             }
         } catch (Exception e) {
         }
-        
+
         return list;
     }
 
@@ -202,7 +202,7 @@ public class DAO {
                 c.setCid(rs.getInt(9));
                 Brand b = new Brand();
                 b.setBid(rs.getInt(10));
-                
+
                 list.add(new Product(
                         rs.getInt(1),
                         rs.getString(2),
@@ -218,7 +218,7 @@ public class DAO {
             }
         } catch (Exception e) {
         }
-        
+
         return list;
     }
 
@@ -247,11 +247,26 @@ public class DAO {
                         rs.getString(8),
                         c,
                         b,
-                        rs.getDouble(11));
+                        rs.getDouble(11),
+                        rs.getInt(12));
             }
         } catch (Exception e) {
         }
         return null;
+    }
+
+    // add view for product
+    public void addViewProduct(String pid) {
+        String sql = "UPDATE Product\n"
+                + "SET [view] = [view] + 1\n"
+                + "WHERE id = ?";
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, pid);
+            ps.executeUpdate();
+        } catch (Exception e) {
+        }
     }
 
     // get category by id
@@ -272,11 +287,11 @@ public class DAO {
         }
         return null;
     }
-    
+
     public List<Product> getFeaturedByCID(String cid) {
         String query = "select top 4 * from Product \n"
                 + "where cateID = ?\n"
-                + "order by price desc, sold desc";
+                + "order by [view] desc, sold desc";
         List<Product> list = new ArrayList<>();
         try {
             conn = new DBContext().getConnection();
@@ -288,7 +303,7 @@ public class DAO {
                 c.setCid(rs.getInt(9));
                 Brand b = new Brand();
                 b.setBid(rs.getInt(10));
-                
+
                 list.add(new Product(
                         rs.getInt(1),
                         rs.getString(2),
@@ -306,7 +321,7 @@ public class DAO {
         }
         return list;
     }
-    
+
     public List<Product> getTopSold() {
         String query = "select top 6 * from Product\n"
                 + "order by sold desc";
@@ -320,7 +335,7 @@ public class DAO {
                 c.setCid(rs.getInt(9));
                 Brand b = new Brand();
                 b.setBid(rs.getInt(10));
-                
+
                 list.add(new Product(
                         rs.getInt(1),
                         rs.getString(2),
@@ -354,7 +369,7 @@ public class DAO {
                 c.setCid(rs.getInt(9));
                 Brand b = new Brand();
                 b.setBid(rs.getInt(10));
-                
+
                 list.add(new Product(
                         rs.getInt(1),
                         rs.getString(2),
@@ -388,7 +403,7 @@ public class DAO {
                 c.setCid(rs.getInt(9));
                 Brand b = new Brand();
                 b.setBid(rs.getInt(10));
-                
+
                 list.add(new Product(
                         rs.getInt(1),
                         rs.getString(2),
@@ -406,13 +421,13 @@ public class DAO {
         }
         return list;
     }
-    
+
     public static void main(String[] args) {
         DAO dao = new DAO();
         List<Category> list = dao.getAllCategory();
         for (Category p : list) {
-            System.out.println(p.getQuantity());
+            System.out.println(p);
         }
-        
+
     }
 }

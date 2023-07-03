@@ -12,6 +12,7 @@ public class Brand {
     private int bid;
     private String bname;
     private int quantity;
+    private double revenue;
 
     public Brand() {
     }
@@ -26,7 +27,21 @@ public class Brand {
         this.bname = bname;
         this.quantity = quantity;
     }
+    
+    public Brand(int bid, String bname, double revenue){
+        this.bid = bid;
+        this.bname = bname;
+        this.revenue = revenue;
+    }
 
+    public double getRevenue() {
+        return revenue;
+    }
+
+    public void setRevenue(double revenue) {
+        this.revenue = revenue;
+    }
+    
     public int getQuantity() {
         return quantity;
     }
@@ -53,8 +68,10 @@ public class Brand {
 
     @Override
     public String toString() {
-        return "Brand{" + "bid=" + bid + ", bname=" + bname + '}';
+        return "Brand{" + "bid=" + bid + ", bname=" + bname + ", quantity=" + quantity + ", revenue=" + revenue + '}';
     }
+
+    
     
     
 }

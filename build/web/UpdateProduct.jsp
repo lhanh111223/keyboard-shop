@@ -13,7 +13,8 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-        <title>Edit Product - Dashboard Admin Template</title>
+        <title>Update Product</title>
+        <link rel="icon" type="image/x-icon" href="https://upload.wikimedia.org/wikipedia/en/thumb/7/7a/Manchester_United_FC_crest.svg/1200px-Manchester_United_FC_crest.svg.png"/>
         <link
             rel="stylesheet"
             href="https://fonts.googleapis.com/css?family=Roboto:400,700"
@@ -30,6 +31,8 @@
             Product Admin CSS Template
             https://templatemo.com/tm-524-product-admin
         -->
+        <!--<script src="libraries/ckeditor5-build-classic/ckeditor.js" type="text/javascript"></script>-->
+        <script src="libraries/ckeditor/ckeditor.js" type="text/javascript"></script>
     </head>
 
     <body>
@@ -57,10 +60,6 @@
                                     <div class="form-group mb-3">
                                         <label>Introduction</label>
                                         <textarea name="intro" rows="2" required class="form-control validate tm-small">${requestScope.prod.intro}</textarea>
-                                    </div>
-                                    <div class="form-group mb-3">
-                                        <label>Description</label>
-                                        <textarea name="description" rows="5" required class="form-control validate tm-small">${requestScope.prod.description}</textarea>
                                     </div>
 
                                     <div class="form-group mb-3">
@@ -135,9 +134,14 @@
                                                 </c:forEach>
                                             </select>
                                         </div>
+                                        
 
                                 </div>
                                 <div class="col-12">
+                                    <div class="form-group mb-3">
+                                        <label>Description</label>
+                                        <textarea id="editorDescription" name="description" rows="5" required class="form-control validate tm-small">${requestScope.prod.description}</textarea>
+                                    </div>
                                     <button type="submit" class="btn btn-primary btn-block text-uppercase">Update Now</button>
                                     <c:if test="${mess != null}">
                                         <a href="loadmanageproduct?bid=${acc.brandID}" class="btn btn-primary btn-block text-uppercase">${mess}</a>
@@ -174,6 +178,10 @@
                 }
 
             }
+            
+            
+            CKEDITOR.replace('description');
+            
         </script>                            
 
         <script src="js/sortProduct.js"></script>

@@ -23,9 +23,22 @@ public class Account {
     private int isAdmin;
     private Integer brandID;
     private String avatar;
+    private int bill;
+    private double paid;
+    private int noproducts;
 
     public Account() {
     }
+
+    public Account(int id, String fullname, int bill, double paid, int noproducts) {
+        this.id = id;
+        this.fullname = fullname;
+        this.bill = bill;
+        this.paid = paid;
+        this.noproducts = noproducts;
+    }
+    
+    
 
     public Account(int id, String fullname, String email, String username, String password, String phone, int isAdmin, Integer brandID, String avatar) {
         this.id = id;
@@ -59,6 +72,31 @@ public class Account {
         this.avatar = avatar;
     }
 
+    public int getBill() {
+        return bill;
+    }
+
+    public void setBill(int bill) {
+        this.bill = bill;
+    }
+
+    public double getPaid() {
+        return paid;
+    }
+
+    public void setPaid(double paid) {
+        this.paid = paid;
+    }
+
+    public int getNoproducts() {
+        return noproducts;
+    }
+
+    public void setNoproducts(int noproducts) {
+        this.noproducts = noproducts;
+    }
+
+    
     
     
     public int getId() {
@@ -127,8 +165,10 @@ public class Account {
 
     @Override
     public String toString() {
-        return "Account{" + "id=" + id + ", fullname=" + fullname + ", email=" + email + ", username=" + username + ", password=" + password + ", phone=" + phone + ", isAdmin=" + isAdmin + ", brandID=" + brandID + ", avatar=" + avatar + '}';
+        return "Account{" + "id=" + id + ", fullname=" + fullname + ", email=" + email + ", username=" + username + ", password=" + password + ", phone=" + phone + ", isAdmin=" + isAdmin + ", brandID=" + brandID + ", avatar=" + avatar + ", bill=" + bill + ", paid=" + paid + ", noproducts=" + noproducts + '}';
     }
+
+    
 
     
 

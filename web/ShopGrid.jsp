@@ -34,12 +34,13 @@
         <!--Java Bean-->
         <jsp:useBean id="a" class="daoo.DAO" scope="request"></jsp:useBean>
 
+
+            <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         </head>
 
         <body>
         <jsp:include page="Menu.jsp"></jsp:include>
         <jsp:include page="Hero.jsp"></jsp:include>
-
             <!-- Product Section Begin -->
             <section class="product spad">
                 <div class="container">
@@ -50,7 +51,7 @@
                                 <form id="formfilter" action="filter">
                                     <input type="hidden" name="cid" value="${tag}"/>
                                 <input type="hidden" name="textSearch" value="${param.textSearch}"/>
-                                
+
                                 <div class="sidebar__item">
                                     <h4>Local Brands</h4>
                                     <ul>
@@ -245,7 +246,6 @@
                                                 <input type="hidden" name="materialA" value="${o}"/>
                                             </c:forEach>
 
-
                                             <input type="hidden" name="cid" value="${tag}"/>
                                             <input type="hidden" name="textSearch" value="${param.textSearch}"/>
                                             <span>Sort By</span>
@@ -264,26 +264,29 @@
                                         <h6><span id="prodfound"></span>Products found</h6>
                                     </div>
                                 </div>
-                                <div class="col-lg-4 col-md-3">
-                                    <div class="filter__option">
-                                        <span class="icon_grid-2x2"></span>
-                                        <span class="icon_ul"></span>
+                                    
+                                <c:if test="${param.textSearch == null && param.cid == null}">
+                                    <div class="col-lg-4 col-md-3">
+                                        <div class="filter__option">
+                                            <input oninput="searchAjax(this)" type="text" value="${param.textSearch}" name="textSearch" placeholder="Auto Search">
+                                        </div>
                                     </div>
-                                </div>
+                                </c:if>
+
                             </div>
                         </div>
 
                         <!--Product founds-->
-                        <div class="row list">
+                        <div id="pd" class="row list">
                             <c:forEach items="${listP}" var="o">
                                 <c:if test="${o.discount == 0}">
                                     <div class="col-lg-4 col-md-6 col-sm-6 eachitem">
                                         <div class="product__item">
                                             <div class="product__item__pic set-bg" data-setbg="${o.image}">
+
                                                 <ul class="product__item__pic__hover">
-                                                    <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                                    <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                                    <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                                                    <li><a href="detail?pid=${o.id}"><i class="fa fa-eye"></i></a></li>
+                                                    <li><a onclick="alertAdd()" href="addtocart?id=${o.id}&num=1"><i class="fa fa-shopping-cart"></i></a></li>
                                                 </ul>
                                             </div>
                                             <div class="product__item__text">
@@ -300,9 +303,8 @@
                                         <div class="product__item">
                                             <div class="product__item__pic set-bg" data-setbg="${o.image}">
                                                 <ul class="product__item__pic__hover">
-                                                    <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                                    <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                                    <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                                                    <li><a href="detail?pid=${o.id}"><i class="fa fa-eye"></i></a></li>
+                                                    <li><a onclick="alertAdd()" href="addtocart?id=${o.id}&num=1"><i class="fa fa-shopping-cart"></i></a></li>
                                                 </ul>
                                             </div>
                                             <div class="product__item__text">
@@ -331,12 +333,34 @@
         <!-- Footer Section Begin -->
         <jsp:include page="Footer.jsp"></jsp:include>
         <!-- Footer Section End -->
-
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script type="text/javascript">
-            function sortBy() {
-                let f = document.getElementById("fsortprod");
-                f.submit();
-            }
+                                                        function sortBy() {
+                                                            let f = document.getElementById("fsortprod");
+                                                            f.submit();
+                                                        }
+
+                                                        function alertAdd() {
+                                                            alert('Add to cart success!!');
+                                                        }
+
+                                                        function searchAjax(param) {
+                                                            var txtSearch = param.value;
+                                                            $.ajax({
+                                                                url: "/fkbshop/searchajax",
+                                                                type: "get",
+                                                                data: {
+                                                                    txtSearch: txtSearch
+                                                                },
+                                                                success: function (data) {
+                                                                    var row = document.getElementById("pd");
+                                                                    row.innerHTML = data;
+                                                                },
+                                                                error: function (xhr) {
+
+                                                                }
+                                                            });
+                                                        }
         </script>
 
         <!-- Js Plugins -->

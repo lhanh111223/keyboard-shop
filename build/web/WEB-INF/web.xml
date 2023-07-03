@@ -20,6 +20,10 @@
         <servlet-name>CategoryControl</servlet-name>
         <servlet-class>control.CategoryControl</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CheckOutControl</servlet-name>
+        <servlet-class>control.CheckOutControl</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>IndexControl</servlet-name>
         <url-pattern>/index</url-pattern>
@@ -39,6 +43,10 @@
     <servlet-mapping>
         <servlet-name>CategoryControl</servlet-name>
         <url-pattern>/category</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CheckOutControl</servlet-name>
+        <url-pattern>/checkout</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
