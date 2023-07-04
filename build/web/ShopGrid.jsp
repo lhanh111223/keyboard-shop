@@ -283,7 +283,7 @@
                                     <div class="col-lg-4 col-md-6 col-sm-6 eachitem">
                                         <div class="product__item">
                                             <div class="product__item__pic set-bg" data-setbg="${o.image}">
-
+                                                
                                                 <ul class="product__item__pic__hover">
                                                     <li><a href="detail?pid=${o.id}"><i class="fa fa-eye"></i></a></li>
                                                     <li><a onclick="alertAdd()" href="addtocart?id=${o.id}&num=1"><i class="fa fa-shopping-cart"></i></a></li>
@@ -310,7 +310,7 @@
                                             <div class="product__item__text">
                                                 <h6><a href="detail?pid=${o.id}">${o.name}</a></h6>
                                                 <h5>${o.price*(100-o.discount)/100} $</h5>
-                                                <span style="text-decoration: line-through">${o.price} $</span> <sup style="color: red">&nbsp(-20%)</sup>
+                                                <span style="text-decoration: line-through">${o.price} $</span> <sup style="color: red">&nbsp(-${o.discount}%)</sup>
 
                                             </div>
                                         </div>

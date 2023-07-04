@@ -38,21 +38,44 @@ public class SearchByAjax extends HttpServlet {
         List<Product> list = dao.searchByname(txtSearch);
         PrintWriter out = response.getWriter();
         for (Product o : list) {
-            out.println("<div class=\"col-lg-4 col-md-6 col-sm-6 eachitem\">\n"
-                    + "                                        <div class=\"product__item\">\n"
-                    + "                                            <div class=\"product__item__pic set-bg\" data-setbg=\""+o.getImage()+"\">\n"
-                     +"<img src=\""+o.getImage()+"\" alt=\"alt\"/>\n"       
-                    + "                                                <ul class=\"product__item__pic__hover\">\n"
-                    + "                                                    <li><a href=\"detail?pid="+o.getId()+"\"><i class=\"fa fa-eye\"></i></a></li>\n"
-                    + "                                                    <li><a onclick=\"alertAdd()\" href=\"addtocart?id="+o.getId()+"&num=1\"><i class=\"fa fa-shopping-cart\"></i></a></li>\n"
-                    + "                                                </ul>\n"
-                    + "                                            </div>\n"
-                    + "                                            <div class=\"product__item__text\">\n"
-                    + "                                                <h6><a href=\"detail?pid="+o.getId()+"\">"+o.getName()+"</a></h6>\n"
-                    + "                                                <h5>"+o.getPrice()+" $</h5>\n"
-                    + "                                            </div>\n"
-                    + "                                        </div>\n"
-                    + "                                    </div>");
+            if (o.getDiscount() == 0) {
+                out.println(""
+                        + "<div class=\"col-lg-4 col-md-6 col-sm-6 eachitem\">\n"
+                        + "                                        <div class=\"product__item\">\n"
+                        + "                                            <div class=\"product__item__pic set-bg\" data-setbg=\"" + o.getImage() + "\">\n"
+                        + "<img style=\"height: 270px\" src=\"" + o.getImage() + "\" alt=\"alt\"/>"
+                        + "                                                <ul class=\"product__item__pic__hover\">\n"
+                        + "                                                    <li><a href=\"detail?pid=" + o.getId() + "\"><i class=\"fa fa-eye\"></i></a></li>\n"
+                        + "                                                    <li><a onclick=\"alertAdd()\" href=\"addtocart?id=" + o.getId() + "&num=1\"><i class=\"fa fa-shopping-cart\"></i></a></li>\n"
+                        + "                                                </ul>\n"
+                        + "                                            </div>\n"
+                        + "                                            <div class=\"product__item__text\">\n"
+                        + "                                                <h6><a href=\"detail?pid=" + o.getId() + "\">" + o.getName() + "</a></h6>\n"
+                        + "                                                <h5>" + o.getPrice() + " $</h5>\n"
+                        + "                                            </div>\n"
+                        + "                                        </div>\n"
+                        + "                                    </div>\n"
+                );
+            } else {
+                out.println(""
+                        + "<div class=\"col-lg-4 col-md-6 col-sm-6 eachitem\">\n"
+                        + "                                        <div class=\"product__item\">\n"
+                        + "                                            <div class=\"product__item__pic set-bg\" data-setbg=\"" + o.getImage() + "\">\n"
+                        + "<img style=\"height: 270px\" src=\"" + o.getImage() + "\" alt=\"alt\"/>"
+                        + "                                                <ul class=\"product__item__pic__hover\">\n"
+                        + "                                                    <li><a href=\"detail?pid=" + o.getId() + "\"><i class=\"fa fa-eye\"></i></a></li>\n"
+                        + "                                                    <li><a onclick=\"alertAdd()\" href=\"addtocart?id=" + o.getId() + "&num=1\"><i class=\"fa fa-shopping-cart\"></i></a></li>\n"
+                        + "                                                </ul>\n"
+                        + "                                            </div>\n"
+                        + "                                            <div class=\"product__item__text\">\n"
+                        + "                                                <h6><a href=\"detail?pid=" + o.getId() + "\">" + o.getName() + "</a></h6>\n"
+                        + "                                                <h5>" + o.getPrice() * (1 - o.getDiscount() / 100) + " $</h5>\n"
+                        + "<span style=\"text-decoration: line-through\">" + o.getPrice()+ " $</span> <sup style=\"color: red\">&nbsp(-"+o.getDiscount()+"%)</sup>"
+                        + "                                            </div>\n"
+                        + "                                        </div>\n"
+                        + "                                    </div>\n"
+                );
+            }
         }
     }
 
