@@ -7,8 +7,11 @@ package control;
 
 import daoo.DAO;
 import daoo.OrderDAO;
+import entity.Account;
 import entity.Brand;
 import entity.Category;
+import entity.Order;
+import entity.OrderDetail;
 import entity.Product;
 import java.io.IOException;
 import jakarta.servlet.ServletException;
@@ -49,13 +52,30 @@ public class DashboardControl extends HttpServlet {
         request.setAttribute("listCateView", listCateView);
         List<Product> listTopSell = od.getTopSellingProdByCate(bid);
         request.setAttribute("listTopSell", listTopSell);
+        request.setAttribute("noSold", listTopSell.size());
         List<Product> listTopInStock = od.getTopInStockProdByCate(bid);
         request.setAttribute("listTopInStock", listTopInStock);
+        request.setAttribute("noInStock", listTopInStock.size());
         List<Category> c = dao.getAllCategory();
         for(int i=0; i<c.size(); i++){
             List<Category> cate = od.getRevenueByCateForBrand(c.get(i).getCid()+"", bid, year);
             request.setAttribute("listCateRevenue"+(i+1), cate);
         }
+        List<Account> topCustomer = od.getTopCustomerForBrand(bid);
+        request.setAttribute("noCustomer", topCustomer.size());
+        request.setAttribute("topCustomer", topCustomer);
+        List<Product> listSoldProd = od.getSoldProductForBrand(bid);
+        request.setAttribute("listSoldProd", listSoldProd);
+        request.setAttribute("noAll", listSoldProd.size());
+        List<Product> listOutOfStock = od.getOutOfStockProd(bid);
+        request.setAttribute("listOutOfStock", listOutOfStock);
+        request.setAttribute("noOutOfStock", listOutOfStock.size());
+        List<Order> listOrder = od.getAllOrder(bid);
+        request.setAttribute("listOrder", listOrder);
+        request.setAttribute("nolistOrder", listOrder.size());
+        List<OrderDetail> listOrderDetail = od.getOrderDetail(bid);
+        request.setAttribute("listOrderDetail", listOrderDetail);
+        
         
         request.getRequestDispatcher("Dashboard.jsp").forward(request, response);
     } 

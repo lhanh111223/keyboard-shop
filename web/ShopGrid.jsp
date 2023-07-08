@@ -88,7 +88,6 @@
                                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                     </c:forEach>    
                                 </div>
-
                                 <div class="sidebar__item">
                                     <h4>Keyboard Layout</h4>
 
@@ -112,7 +111,6 @@
                                     </c:forEach> 
 
                                 </div>
-
                                 <div class="sidebar__item">
                                     <h4>Materials</h4>
 

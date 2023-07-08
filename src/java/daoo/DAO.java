@@ -290,7 +290,8 @@ public class DAO {
 
     public List<Product> getFeaturedByCID(String cid) {
         String query = "select top 4 * from Product \n"
-                + "where cateID = ?\n"
+                + "where cateID = ?\n "
+                + "AND (quantity - sold) > 0"
                 + "order by [view] desc, sold desc";
         List<Product> list = new ArrayList<>();
         try {

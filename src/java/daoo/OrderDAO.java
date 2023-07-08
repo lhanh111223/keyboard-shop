@@ -10,6 +10,8 @@ import entity.Brand;
 import entity.Cart;
 import entity.Category;
 import entity.Item;
+import entity.Order;
+import entity.OrderDetail;
 import entity.Product;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -67,7 +69,7 @@ public class OrderDAO {
                 }
                 // update so luong sold
                 String sql3 = "UPDATE Product\n"
-                        + "SET sold = ?\n"
+                        + "SET sold = sold+?\n"
                         + "where id = ?";
                 PreparedStatement ps3 = conn.prepareStatement(sql3);
                 for (Item i : cart.getItems()) {
@@ -85,7 +87,7 @@ public class OrderDAO {
         List<Brand> list = new ArrayList<>();
         int month[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12};
         for (int i : month) {
-            String sql = "SELECT b.bid, b.bname, SUM(od.price) as 'revenue'\n"
+            String sql = "SELECT b.bid, b.bname, SUM(od.price*numItem) as 'revenue'\n"
                     + "FROM Brand b\n"
                     + "JOIN Product p ON b.bid = p.brandID\n"
                     + "JOIN OrderDetail od ON p.id = od.product_id\n"
@@ -127,45 +129,45 @@ public class OrderDAO {
         int month[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12};
 
         for (int i : month) {
-                String sql = "SELECT c.cname, SUM(od.price) as 'revenue'\n"
-                        + "FROM Brand b\n"
-                        + "JOIN Product p ON b.bid = p.brandID\n"
-                        + "JOIN Category c ON p.cateID = c.cid\n"
-                        + "JOIN OrderDetail od ON p.id = od.product_id\n"
-                        + "JOIN [Order] o ON o.oid = od.order_id\n"
-                        + "WHERE YEAR(o.order_date) = ?\n"
-                        + "	AND MONTH(o.order_date) = ?\n"
-                        + "	AND p.cateID = ?\n"
-                        + "	AND b.bid = ?\n"
-                        + "GROUP BY c.cname";
-                try {
-                    conn = new DBContext().getConnection();
-                    ps = conn.prepareStatement(sql);
-                    ps.setString(1, year);
-                    ps.setInt(2, i);
-                    ps.setString(3, cid);
-                    ps.setString(4, bid);
-                    rs = ps.executeQuery();
-                    if (rs.next()) {
-                        Category cate = new Category();
-                        cate.setCname(rs.getString(1));
-                        cate.setRevenue(rs.getDouble(2));
-                        list.add(cate);
-                    }else{
-                        Category cate = new Category();
-                        cate.setCname("");
-                        cate.setRevenue(0);
-                        list.add(cate);
-                    }
-                } catch (Exception e) {
+            String sql = "SELECT c.cname, SUM(od.price*numItem) as 'revenue'\n"
+                    + "FROM Brand b\n"
+                    + "JOIN Product p ON b.bid = p.brandID\n"
+                    + "JOIN Category c ON p.cateID = c.cid\n"
+                    + "JOIN OrderDetail od ON p.id = od.product_id\n"
+                    + "JOIN [Order] o ON o.oid = od.order_id\n"
+                    + "WHERE YEAR(o.order_date) = ?\n"
+                    + "	AND MONTH(o.order_date) = ?\n"
+                    + "	AND p.cateID = ?\n"
+                    + "	AND b.bid = ?\n"
+                    + "GROUP BY c.cname";
+            try {
+                conn = new DBContext().getConnection();
+                ps = conn.prepareStatement(sql);
+                ps.setString(1, year);
+                ps.setInt(2, i);
+                ps.setString(3, cid);
+                ps.setString(4, bid);
+                rs = ps.executeQuery();
+                if (rs.next()) {
+                    Category cate = new Category();
+                    cate.setCname(rs.getString(1));
+                    cate.setRevenue(rs.getDouble(2));
+                    list.add(cate);
+                } else {
+                    Category cate = new Category();
+                    cate.setCname("");
+                    cate.setRevenue(0);
+                    list.add(cate);
                 }
+            } catch (Exception e) {
+            }
         }
         return list;
     }
 
     public List<Category> getRevenueByCate(String bid) {
         List<Category> list = new ArrayList<>();
-        String sql = "SELECT c.cname, SUM(od.price) as 'revenue'\n"
+        String sql = "SELECT c.cname, SUM(od.price*numItem) as 'revenue'\n"
                 + "FROM Category c\n"
                 + "	JOIN Product p ON c.cid = p.cateID\n"
                 + "	JOIN Brand b ON p.brandID = b.bid\n"
@@ -219,10 +221,10 @@ public class OrderDAO {
     // top selling product
     public List<Product> getTopSellingProdByCate(String bid) {
         List<Product> list = new ArrayList<>();
-        String sql = "select top (40) percent *\n"
+        String sql = "select *\n"
                 + "from Product p\n"
                 + "	JOIN Category c ON p.cateID = c.cid\n"
-                + "where brandID = ?\n"
+                + "where brandID = ? and (sold*100/quantity) >= 10\n"
                 + "order by sold desc";
         try {
             conn = new DBContext().getConnection();
@@ -250,10 +252,10 @@ public class OrderDAO {
     // top instock product
     public List<Product> getTopInStockProdByCate(String bid) {
         List<Product> list = new ArrayList<>();
-        String sql = "select top (30) percent *\n"
+        String sql = "select *\n"
                 + "from Product p\n"
                 + "	JOIN Category c ON p.cateID = c.cid\n"
-                + "where brandID = ?\n"
+                + "where brandID = ? and (sold*100/quantity) < 10\n"
                 + "order by (quantity - sold) desc";
         try {
             conn = new DBContext().getConnection();
@@ -279,13 +281,142 @@ public class OrderDAO {
         return list;
     }
 
+    // top customer for Brand
+    public List<Account> getTopCustomerForBrand(String bid) {
+        List<Account> list = new ArrayList<>();
+        String sql = "SELECT a.aid, a.fullname, a.avatar, SUM(od.price*numItem) as 'Total Money', a.phone, a.email\n"
+                + "FROM Account a\n"
+                + "	JOIN [Order] o ON a.aid = o.account_id\n"
+                + "	JOIN [OrderDetail] od ON o.oid = od.order_id\n"
+                + "	JOIN [Product] p ON od.product_id = p.id\n"
+                + "WHERE p.brandID = ?\n"
+                + "GROUP BY a.aid, a.fullname, a.avatar, a.phone, a.email\n"
+                + "ORDER BY [Total Money] desc";
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, bid);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Account a = new Account();
+                a.setId(rs.getInt(1));
+                a.setFullname(rs.getString(2));
+                a.setAvatar(rs.getString(3));
+                a.setPaid(rs.getDouble(4));
+                a.setPhone(rs.getString(5));
+                a.setEmail(rs.getString(6));
+                list.add(a);
+            }
+        } catch (Exception e) {
+        }
+        return list;
+    }
+
+    // get sold of product
+    public List<Product> getSoldProductForBrand(String bid) {
+        List<Product> list = new ArrayList<>();
+        String sql = "SELECT * FROM Product\n"
+                + "WHERE brandID = ?";
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, bid);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Product p = new Product();
+                p.setName(rs.getString(2));
+                p.setSold(rs.getInt(5));
+                list.add(p);
+            }
+        } catch (Exception e) {
+        }
+        return list;
+    }
+
+    // out of stock products
+    public List<Product> getOutOfStockProd(String bid) {
+        List<Product> list = new ArrayList<>();
+        String sql = "SELECT * FROM Product\n"
+                + "WHERE (quantity - sold) = 0\n"
+                + "AND brandID = ?";
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, bid);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Product p = new Product();
+                p.setId(rs.getInt(1));
+                p.setName(rs.getString(2));
+                p.setImage(rs.getString(6));
+                list.add(p);
+            }
+        } catch (Exception e) {
+        }
+        return list;
+    }
+
+    // get all order
+    public List<Order> getAllOrder(String bid) {
+        String sql = "SELECT DISTINCT o.oid, o.fullname, o.[address], o.order_date\n"
+                + "FROM [OrderDetail] od\n"
+                + "	JOIN [Order] o ON o.oid = od.order_id\n"
+                + "	JOIN [Product] p ON od.product_id = p.id\n"
+                + "WHERE p.brandID = ?\n"
+                + "ORDER BY o.oid desc";
+        List<Order> list = new ArrayList<>();
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, bid);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Order o = new Order();
+                o.setOid(rs.getInt(1));
+                o.setFullname(rs.getString(2));
+                o.setAddress(rs.getString(3));
+                o.setOrder_date(rs.getString(4));
+                list.add(o);
+            }
+
+        } catch (Exception e) {
+        }
+        return list;
+    }
+
+    //get order detail
+    public List<OrderDetail> getOrderDetail(String bid) {
+        List<OrderDetail> list = new ArrayList<>();
+        String sql = "SELECT  o.oid, p.[name], od.price, od.numItem, od.price*numItem as 'total'\n"
+                + "FROM [OrderDetail] od\n"
+                + "	JOIN [Order] o ON o.oid = od.order_id\n"
+                + "	JOIN [Product] p ON od.product_id = p.id\n"
+                + "WHERE p.brandID = ? ";
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, bid);
+            rs = ps.executeQuery();
+            while(rs.next()){
+                OrderDetail od = new OrderDetail();
+                od.setOrder_id(rs.getInt(1));
+                od.setProd_name(rs.getString(2));
+                od.setPrice(rs.getDouble(3));
+                od.setNumItem(rs.getInt(4));
+                od.setTotal_money(rs.getDouble(5));
+                list.add(od);
+            }
+        } catch (Exception e) {
+        }
+        return list;
+    }
+
     public static void main(String[] args) {
         OrderDAO od = new OrderDAO();
         DAO dao = new DAO();
-        List<Category> cate = dao.getAllCategory();
-        List<Category> c = od.getRevenueByCateForBrand("1", "2", "2023");
-        for (Category category : c) {
-            System.out.println(category.getRevenue());
+        List<Brand> listBrand = od.getRevenueByYear("1", "2023");
+        for (Brand brand : listBrand) {
+            System.out.println(brand);
         }
 
     }

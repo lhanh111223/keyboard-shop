@@ -70,7 +70,8 @@ public class FilterDAO extends DBContext {
     public List<Product> getDiscountProduct() {
         List<Product> list = new ArrayList<>();
         String sql = "select * from Product\n"
-                + "where discount > 0";
+                + "where discount > 0\n "
+                + "ORDER BY discount desc";
 
         try {
             conn = new DBContext().getConnection();

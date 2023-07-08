@@ -41,7 +41,7 @@
                     <div class="col-xl-9 col-lg-10 col-md-12 col-sm-12 mx-auto">
                         <!--Begin From Add-->
                         <form id="f" action="addproduct" method="post" class="tm-edit-product-form">
-                        <input type="hidden" name="brandID" value="${sessionScope.acc.brandID}"/>
+                            <input type="hidden" name="brandID" value="${sessionScope.acc.brandID}"/>
                         <div class="tm-bg-primary-dark tm-block tm-block-h-auto">
                             <div class="row">
                                 <div class="col-12">
@@ -114,24 +114,24 @@
                                             </c:forEach>
                                         </select>
                                     </div>
-                                        <div id="cate2" style="${(param.category==2 || param.category==3)?"display: block":"display: none"}" 
-                                             class="form-group mb-3">
-                                            <label>Keyboard Layout</label>
-                                            <select name="layout" class="custom-select tm-select-accounts">
-                                                <c:forEach items="${listLayout}" var="o">
-                                                    <option ${prod.productDetail.getLid().getLayout_id() == o.layout_id ?"selected":""} value="${o.layout_id}">${o.layout_name}</option>
-                                                </c:forEach>
-                                            </select>
-                                        </div>
-                                        <div id="cate3" style="${(param.category==2 || param.category==3)?"display: block":"display: none"}" 
-                                             class="form-group mb-3">
-                                            <label>Keyboard Connect</label>
-                                            <select name="connect" class="custom-select tm-select-accounts">
-                                                <c:forEach items="${listFeature}" var="o">
-                                                    <option ${prod.productDetail.getFid().getFeature_id() == o.feature_id ?"selected":""} value="${o.feature_id}">${o.feature_name}</option>
-                                                </c:forEach>
-                                            </select>
-                                        </div>
+                                    <div id="cate2" style="${(param.category==2 || param.category==3)?"display: block":"display: none"}" 
+                                         class="form-group mb-3">
+                                        <label>Keyboard Layout</label>
+                                        <select id="layoutAdd" name="layout" class="custom-select tm-select-accounts">
+                                            <c:forEach items="${listLayout}" var="o">
+                                                <option ${prod.productDetail.getLid().getLayout_id() == o.layout_id ?"selected":""} value="${o.layout_id}">${o.layout_name}</option>
+                                            </c:forEach>
+                                        </select>
+                                    </div>
+                                    <div id="cate3" style="${(param.category==2 || param.category==3)?"display: block":"display: none"}" 
+                                         class="form-group mb-3">
+                                        <label>Keyboard Connect</label>
+                                        <select id="connectAdd" name="connect" class="custom-select tm-select-accounts">
+                                            <c:forEach items="${listFeature}" var="o">
+                                                <option ${prod.productDetail.getFid().getFeature_id() == o.feature_id ?"selected":""} value="${o.feature_id}">${o.feature_name}</option>
+                                            </c:forEach>
+                                        </select>
+                                    </div>
 
                                 </div>
                                 <div class="col-12">
@@ -166,17 +166,21 @@
             let op = document.getElementById("op");
             let f = document.getElementById("f");
             function show() {
-                if(op.value === "2" || op.value === "3"){
+                if (op.value === "2" || op.value === "3") {
                     cate1.style.display = "block";
                     cate2.style.display = "block";
-                }else if (op.value === "1" || op.value === "4"){
+                } else if (op.value === "1" || op.value === "4") {
                     cate1.style.display = "none";
                     cate2.style.display = "none";
+                    let lay = document.getElementById("layoutAdd");
+                    let conn = document.getElementById("connectAdd");
+                    lay.value = null;
+                    conn.value = null;
                 }
 
             }
-            
-            
+
+
             CKEDITOR.replace('description');
         </script>                            
 

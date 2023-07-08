@@ -14,6 +14,7 @@ public class OrderDetail {
     private double price;
     private int numItem;
     private double total_money;
+    private String prod_name;
 
     public OrderDetail() {
     }
@@ -25,6 +26,14 @@ public class OrderDetail {
         this.price = price;
         this.numItem = numItem;
         this.total_money = total_money;
+    }
+
+    public String getProd_name() {
+        return prod_name;
+    }
+
+    public void setProd_name(String prod_name) {
+        this.prod_name = prod_name;
     }
 
     public int getOdid() {
@@ -77,8 +86,10 @@ public class OrderDetail {
 
     @Override
     public String toString() {
-        return "OrderDetail{" + "odid=" + odid + ", product_id=" + product_id + ", order_id=" + order_id + ", price=" + price + ", numItem=" + numItem + ", total_money=" + total_money + '}';
+        return "OrderDetail{" + "odid=" + odid + ", product_id=" + product_id + ", order_id=" + order_id + ", price=" + price + ", numItem=" + numItem + ", total_money=" + total_money + ", prod_name=" + prod_name + '}';
     }
+
+    
     
     
 }

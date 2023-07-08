@@ -119,7 +119,7 @@
                                         <div id="cate2" style="${(prod.getCategory().getCid()==2 || prod.getCategory().getCid()==3)?"display: block":"display: none"}" 
                                              class="form-group mb-3">
                                             <label>Keyboard Layout</label>
-                                            <select name="layout" class="custom-select tm-select-accounts">
+                                            <select id="layoutAdd" name="layout" class="custom-select tm-select-accounts">
                                                 <c:forEach items="${listLayout}" var="o">
                                                     <option ${prod.productDetail.getLid().getLayout_id() == o.layout_id ?"selected":""} value="${o.layout_id}">${o.layout_name}</option>
                                                 </c:forEach>
@@ -128,7 +128,7 @@
                                         <div id="cate3" style="${(prod.getCategory().getCid()==2 || prod.getCategory().getCid()==3)?"display: block":"display: none"}" 
                                              class="form-group mb-3">
                                             <label>Keyboard Connect</label>
-                                            <select name="connect" class="custom-select tm-select-accounts">
+                                            <select id="connectAdd" name="connect" class="custom-select tm-select-accounts">
                                                 <c:forEach items="${listFeature}" var="o">
                                                     <option ${prod.productDetail.getFid().getFeature_id() == o.feature_id ?"selected":""} value="${o.feature_id}">${o.feature_name}</option>
                                                 </c:forEach>
@@ -175,6 +175,10 @@
                 }else if (op.value === "1" || op.value === "4"){
                     cate1.style.display = "none";
                     cate2.style.display = "none";
+                    let lay = document.getElementById("layoutAdd");
+                    let conn = document.getElementById("connectAdd");
+                    lay.value = null;
+                    conn.value = null;
                 }
 
             }

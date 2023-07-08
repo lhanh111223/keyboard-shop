@@ -44,7 +44,7 @@
                                         <tr>
                                             <th scope="col">&nbsp;</th>
                                             <th scope="col">PRODUCT NAME</th>
-                                            <th scope="col">UNIT SOLD</th>
+                                            <th scope="col">SOLD</th>
                                             <th scope="col">IN STOCK</th>
                                             <th scope="col">PRICE</th>
                                             <th scope="col">&nbsp;</th>

@@ -42,7 +42,8 @@ public class ManagerDAO extends DBContext {
                 + "	FULL JOIN Layout l ON pd.lid = l.layout_id\n"
                 + "	FULL JOIN Feature f ON pd.fid = f.feature_id\n"
                 + "\n"
-                + "	where br.bid = ?";
+                + "	where br.bid = ?\n"
+                + "ORDER BY id DESC";
 
         try {
             conn = new DBContext().getConnection();
