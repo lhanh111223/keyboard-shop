@@ -6,9 +6,11 @@ package daoo;
 
 import context.DBContext;
 import entity.Account;
+import entity.Order;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -184,9 +186,58 @@ public class AccountDAO extends DBContext {
         return null;
     }
 
+    public List<Order> getOrderDetailForUser(String aid, String day, String month, String year) {
+        List<Order> list = new ArrayList<>();
+        String sql = "SELECT o.oid, p.name, od.price, od.numItem, od.total_money, o.status, o.order_date\n"
+                + "FROM Account a\n"
+                + "	JOIN [Order] o ON o.account_id = a.aid\n"
+                + "	JOIN [OrderDetail] od ON od.order_id = o.oid\n"
+                + "	JOIN [Product] p ON p.id = od.product_id\n"
+                + "	WHERE a.aid = ?\n";
+        
+        if(day == null || day.isEmpty()){
+            sql += "";
+        }else{
+            sql += ("\nAND DAY(o.order_date) = " + day);
+        }
+        if(month == null || month.isEmpty()){
+            sql += "";
+        }else{
+            sql += ("\nAND MONTH(o.order_date) = " + month);
+        }
+        if(year == null || year.isEmpty()){
+            sql += "";
+        }else{
+            sql += ("\nAND YEAR(o.order_date) = " + year);
+        }
+        
+        sql += ("ORDER BY o.oid DESC");
+        
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, aid);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Order o = new Order();
+                o.setOid(rs.getInt(1));
+                o.setFullname(rs.getString(2));
+                o.setTotal_money(rs.getDouble(5));
+                o.setPhone(rs.getInt(4) + "");
+                o.setStatus(rs.getInt(6) + "");
+                o.setOrder_date(rs.getString(7));
+                list.add(o);
+            }
+        } catch (Exception e) {
+        }
+        return list;
+    }
+
     public static void main(String[] args) {
         AccountDAO ad = new AccountDAO();
-        Account a = ad.getActivity("user");
-        System.out.println(a);
+        List<Order> list = ad.getOrderDetailForUser("23", "", "", "");
+        for (Order order : list) {
+            System.out.println(order);
+        }
     }
 }

@@ -6,6 +6,7 @@ package control;
 
 import daoo.AccountDAO;
 import entity.Account;
+import entity.Order;
 import java.io.IOException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -13,7 +14,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import jakarta.servlet.http.Part;
+import java.util.List;
 
 /**
  *
@@ -38,6 +39,8 @@ public class EditProfileControl extends HttpServlet {
         Account a = (Account) session.getAttribute("acc");
         Account act = ad.getActivity(a.getUsername());
         request.setAttribute("act", act);
+        List<Order> listOrder = ad.getOrderDetailForUser(a.getId()+"","","","");
+        request.setAttribute("listOrder", listOrder);
         request.getRequestDispatcher("EditProfile.jsp").forward(request, response);
     }
 
@@ -86,6 +89,16 @@ public class EditProfileControl extends HttpServlet {
 
         Account act = ad.getActivity(acc.getUsername());
         request.setAttribute("act", act);
+        
+        String day = request.getParameter("day");
+        request.setAttribute("day", day);
+        String month = request.getParameter("month");
+        request.setAttribute("month", month);
+        String year = request.getParameter("year");
+        request.setAttribute("year", year);
+        List<Order> listOrder = ad.getOrderDetailForUser(acc.getId()+"", day, month, year);
+        request.setAttribute("listOrder", listOrder);
+        
         request.getRequestDispatcher("EditProfile.jsp").forward(request, response);
     }
 

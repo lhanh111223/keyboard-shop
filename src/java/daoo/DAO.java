@@ -9,7 +9,6 @@ import entity.Account;
 import entity.Brand;
 import entity.Category;
 import entity.Product;
-import entity.ProductDetail;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -25,6 +24,23 @@ public class DAO {
     Connection conn;
     PreparedStatement ps = null;
     ResultSet rs = null;
+
+    // get brand by id
+    public Brand getBrandByBid(String bid) {
+        String sql = "select * from Brand\n"
+                + "where bid = ?";
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, bid);
+            rs = ps.executeQuery();
+            while(rs.next()){
+                return new Brand(rs.getInt(1), rs.getString(2));
+            }
+        } catch (Exception e) {
+        }
+        return null;
+    }
 
     // get all category
     public List<Category> getAllCategory() {

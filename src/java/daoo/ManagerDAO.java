@@ -30,6 +30,36 @@ public class ManagerDAO extends DBContext {
     PreparedStatement ps = null;
     ResultSet rs = null;
 
+    // update category
+    public void updateCategoryByCid(String cname, String cid) {
+        String sql = "UPDATE Category\n"
+                + "SET cname = ?\n"
+                + "WHERE cid = ?";
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, cname);
+            ps.setString(2, cid);
+            ps.executeUpdate();
+        } catch (Exception e) {
+        }
+    }
+    
+    // update brand
+    public void updateBrandByCid(String bname, String bid) {
+        String sql = "UPDATE Brand\n"
+                + "SET bname = ?\n"
+                + "WHERE bid = ?";
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, bname);
+            ps.setString(2, bid);
+            ps.executeUpdate();
+        } catch (Exception e) {
+        }
+    }
+    
     // get product by brand id
     public List<Product> getProductByBrand(String bid) {
         List<Product> list = new ArrayList<>();

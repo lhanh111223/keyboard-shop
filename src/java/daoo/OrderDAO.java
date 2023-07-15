@@ -357,14 +357,32 @@ public class OrderDAO {
     }
 
     // get all order
-    public List<Order> getAllOrder(String bid) {
+    public List<Order> getAllOrder(String bid, String day, String month, String year) {
         String sql = "SELECT DISTINCT o.oid, o.fullname, o.[address], o.order_date\n"
                 + "FROM [OrderDetail] od\n"
                 + "	JOIN [Order] o ON o.oid = od.order_id\n"
                 + "	JOIN [Product] p ON od.product_id = p.id\n"
-                + "WHERE p.brandID = ?\n"
-                + "ORDER BY o.oid desc";
+                + "WHERE p.brandID = ?\n";
         List<Order> list = new ArrayList<>();
+        
+        if(day == null || day.isEmpty()){
+            sql += "";
+        }else{
+            sql += ("\nAND DAY(o.order_date) = " + day);
+        }
+        if(month == null || month.isEmpty()){
+            sql += "";
+        }else{
+            sql += ("\nAND MONTH(o.order_date) = " + month);
+        }
+        if(year == null || year.isEmpty()){
+            sql += "";
+        }else{
+            sql += ("\nAND YEAR(o.order_date) = " + year);
+        }
+        
+        sql += ("ORDER BY o.oid DESC");
+        
         try {
             conn = new DBContext().getConnection();
             ps = conn.prepareStatement(sql);

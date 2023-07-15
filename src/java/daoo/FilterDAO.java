@@ -296,7 +296,6 @@ public class FilterDAO extends DBContext {
             }
         } catch (Exception e) {
         }
-        System.out.println(sql);
         return list;
     }
 

@@ -11,7 +11,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Add Category</title>
+    <title>Update Category</title>
     <link rel="icon" type="image/x-icon" href="https://upload.wikimedia.org/wikipedia/en/thumb/7/7a/Manchester_United_FC_crest.svg/1200px-Manchester_United_FC_crest.svg.png"/>
     <link
       rel="stylesheet"
@@ -40,13 +40,15 @@
           </div>
           <div class="tm-block-col tm-col-lg-12">
             <div class="tm-bg-primary-dark tm-block tm-block-settings">
-              <h2 class="tm-block-title">Create Category</h2>
-              <form action="addcategory" method="post" class="tm-signup-form row">
+              <h2 class="tm-block-title">Update Category</h2>
+              <form action="updatecategory" method="post" class="tm-signup-form row">
+                <input type="hidden" name="cid" value="${c.cid}"/>
                 <div class="form-group col-lg-6">
                   <label for="name">Category Name</label>
                   <input
                     name="cname"
                     type="text"
+                    value="${c.cname}"
                     class="form-control validate"
                   />
                 </div>
@@ -57,7 +59,7 @@
                     type="submit"
                     class="btn btn-primary btn-block text-uppercase"
                   >
-                    Create Category
+                    Update Category
                   </button>
                 </div>
                 

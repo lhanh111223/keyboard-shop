@@ -125,7 +125,7 @@
 
                     <h2 class="formTitle">
                         Change your Password
-                        
+
                     </h2>
                     <div class="inputDiv">
                         <label class="inputLabel">Your Username</label>
@@ -150,7 +150,6 @@
                             <span>SAVE</span>
                         </button>
                     </div>
-
                     <div class="text-center p-t-12">
                         <span class="txt1">
                             <p style="color: red; text-align: center" class="text-danger">${err}</p>
@@ -158,6 +157,11 @@
                     </div>
 
                 </form>
+                <div class="buttonWrapper">
+                    <a href="index"><button  id="submitButton" class="submitButton pure-button pure-button-primary">
+                            <span>RETURN HOME</span>
+                        </button></a>
+                </div>
             </div>
         </div>
     </body>

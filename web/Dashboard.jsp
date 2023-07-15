@@ -44,7 +44,7 @@
                             <div class="tm-bg-primary-dark tm-block">
                                 <h2 class="tm-block-title">REVENUE</h2>
                                 <form id="f" action="dashboard">
-                                    <input type="hidden" name="bid" value="${sessionScope.acc.brandID}"/    >
+                                    <input type="hidden" name="bid" value="${sessionScope.acc.brandID}"/>
                                     <select onchange="changeYear()" class="form-select form-select-lg mb-3" name="year">
                                         <option ${tag == 2021 ?"selected":""} value="2021">2021</option>
                                         <option ${tag == 2022 ?"selected":""} value="2022">2022</option>
@@ -55,22 +55,7 @@
                             </div>
                         </div>
                     </c:if>  
-                    <c:if test="${sessionScope.acc.isAdmin == 1}">
-                        <div class="col-sm-12 col-md-12 col-lg-8 col-xl-8 tm-block-col">
-                            <div class="tm-bg-primary-dark tm-block">
-                                <h2 class="tm-block-title">REVENUE ($)</h2>
-                                <form id="f" action="dashboard">
-                                    <input type="hidden" name="bid" value="${sessionScope.acc.brandID}"/    >
-                                    <select onchange="changeYear()" class="form-select form-select-lg mb-3" name="year">
-                                        <option ${tag == 2021 ?"selected":""} value="2021">2021</option>
-                                        <option ${tag == 2022 ?"selected":""} value="2022">2022</option>
-                                        <option ${tag == 2023 ?"selected":""} value="2023">2023</option>
-                                    </select>
-                                </form>
-                                <canvas id="lineChart1"></canvas>
-                            </div>
-                        </div>
-                    </c:if>
+
                     <div class="col-sm-12 col-md-12 col-lg-8 col-xl-8 tm-block-col">
                         <div class="tm-bg-primary-dark tm-block">
                             <h2 class="tm-block-title">SELLING PRODUCT (${noAll})</h2>
@@ -176,6 +161,14 @@
                     <div class="col-12 tm-block-col">
                         <div class="tm-bg-primary-dark tm-block tm-block-taller tm-block-scroll">
                             <h2 class="tm-block-title">Orders List (${nolistOrder})</h2>
+                            <form action="dashboard">    
+                                <input type="hidden" name="bid" value="${sessionScope.acc.brandID}"/>
+                                <input type="hidden" name="year" value="${param.year}"/>
+                                <span style="color: white">Day:</span> <input type="number" name="day" value="${day}"/>
+                                <span style="color: white">Month:</span> <input type="number" name="month" value="${month}"/>
+                                <span style="color: white">Year:</span> <input type="number" name="yearOrder" value="${yearOrder}"/>
+                                <input type="submit" value="SEARCH"/>
+                            </form>
                             <table class="table">
                                 <thead>
                                     <tr>
@@ -225,7 +218,7 @@
 
                                                                                 <table style="width: 100%" border="1">
                                                                                     <thead>
-                                                                                        <tr>
+                                                                                        <tr style="font-size: 15px">
                                                                                             <th>Product</th>
                                                                                             <th>Price</th>
                                                                                             <th>Quantity</th>
@@ -236,7 +229,7 @@
                                                                                         <c:set var="paid" value="0"></c:set>
                                                                                         <c:forEach items="${listOrderDetail}" var="od">
                                                                                             <c:if test="${o.oid == od.order_id}">
-                                                                                                <tr>
+                                                                                                <tr style="font-size: 12px">
                                                                                                     <td style="color: black;">${od.prod_name}</td>
                                                                                                     <td style="color: black">${od.price}$</td>
                                                                                                     <td style="color: black; text-align: center">${od.numItem}</td>
@@ -248,9 +241,9 @@
                                                                                     </tbody>
                                                                                 </table>
 
-                                                                                <div class="d-flex justify-content-end">
-                                                                                    <p class="text-success" style="font-size: 15px">Total Money:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
-                                                                                    <p class="text-success" style="color: #35558a; font-size: 15px">${paid} $</p>
+                                                                                <div style="margin-top: 10%" class="d-flex justify-content-end">
+                                                                                    <p class="text-success" style="font-size: 20px">Total Money:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                                                                                    <p class="text-success" style="color: #35558a; font-size: 20px">${paid} $</p>
                                                                                 </div>
                                                                             </div>
 
@@ -269,23 +262,14 @@
                         </div>
                     </div>
                 </div>
+                <jsp:include page="ManageFooter.jsp"></jsp:include>
 
-
+                </div>
             </div>
         </div>
+
     </div>
 
-</div>
-<footer class="tm-footer row tm-mt-small">
-    <div class="col-12 font-weight-light">
-        <p class="text-center text-white mb-0 px-4 small">
-            Copyright &copy; <b>2018</b> All rights reserved.
-
-            Design: <a rel="nofollow noopener" href="https://templatemo.com" class="tm-footer-link">Template
-                Mo</a>
-        </p>
-    </div>
-</footer>
 </div>
 
 <script type="text/javascript">
@@ -381,9 +365,9 @@
                     {
                     label: "REVENUE ($)",
                             data: [
-    <c:forEach items="${listBrand}" var="o">
-        ${o.revenue},
-    </c:forEach>
+<c:forEach items="${listBrand}" var="o">
+    ${o.revenue},
+</c:forEach>
                             ],
                             fill: false,
                             borderColor: "rgb(75, 192, 192)",
@@ -393,9 +377,9 @@
                     {
                     label: "SWITCH",
                             data: [
-    <c:forEach items="${listCateRevenue1}" var="o">
-        ${o.revenue},
-    </c:forEach>
+<c:forEach items="${listCateRevenue1}" var="o">
+    ${o.revenue},
+</c:forEach>
                             ],
                             fill: false,
                             borderColor: "rgba(255,99,132,1)",
@@ -405,9 +389,9 @@
                     {
                     label: "CUSTOM KEYBOARD",
                             data: [
-    <c:forEach items="${listCateRevenue2}" var="o">
-        ${o.revenue},
-    </c:forEach>
+<c:forEach items="${listCateRevenue2}" var="o">
+    ${o.revenue},
+</c:forEach>
                             ],
                             fill: false,
                             borderColor: "rgba(153, 102, 255, 1)",
@@ -417,9 +401,9 @@
                     {
                     label: "MECHANICAL KEYBOARD",
                             data: [
-    <c:forEach items="${listCateRevenue3}" var="o">
-        ${o.revenue},
-    </c:forEach>
+<c:forEach items="${listCateRevenue3}" var="o">
+    ${o.revenue},
+</c:forEach>
                             ],
                             fill: false,
                             borderColor: "#FFFF00",
@@ -429,9 +413,9 @@
                     {
                     label: "KEYCAPS",
                             data: [
-    <c:forEach items="${listCateRevenue4}" var="o">
-        ${o.revenue},
-    </c:forEach>
+<c:forEach items="${listCateRevenue4}" var="o">
+    ${o.revenue},
+</c:forEach>
                             ],
                             fill: false,
                             borderColor: "#FF9900",
@@ -483,17 +467,17 @@
     type: "horizontalBar",
             data: {
             labels: [
-    <c:forEach items="${listSoldProd}" var="o">
+<c:forEach items="${listSoldProd}" var="o">
             "${o.name}",
-    </c:forEach>
+</c:forEach>
             ],
                     datasets: [
                     {
                     label: "# no sold",
                             data: [
-    <c:forEach items="${listSoldProd}" var="o">
+<c:forEach items="${listSoldProd}" var="o">
                             "${o.sold}",
-    </c:forEach>
+</c:forEach>
                             ],
                             backgroundColor: [
                                     "#F7604D",
@@ -541,18 +525,18 @@
             datasets: [
             {
             data: [
-    <c:forEach items="${listCate}" var="o">
-        ${o.revenue},
-    </c:forEach>
+<c:forEach items="${listCate}" var="o">
+    ${o.revenue},
+</c:forEach>
             ],
                     backgroundColor: ["#F7604D", "#4ED6B8", "#A8D582", "#FFFF00"],
                     label: "Storage"
             }
             ],
                     labels: [
-    <c:forEach items="${listCate}" var="o">
+<c:forEach items="${listCate}" var="o">
                     "${o.cname}",
-    </c:forEach>
+</c:forEach>
                     ]
             },
             options: optionsPie

@@ -96,6 +96,7 @@
                                     <h3 style="color: white">List Category</h3>
                                     <thead>
                                         <tr>
+                                            <th scope="col">&nbsp;</th>
                                             <th scope="col">Category</th>
                                             <th scope="col">Number of Products</th>
                                             <th scope="col">Category ID</th>
@@ -105,6 +106,9 @@
                                     <tbody>
                                         <c:forEach items="${requestScope.listCate}" var="o">
                                             <tr>
+                                                <td><a href="updatecategory?cid=${o.cid}" class="tm-product-delete-link">
+                                                            <i class="far fa-edit fa-lg" style="color: white"></i>
+                                                        </a></td>
                                                 <td class="tm-product-name">${o.cname}</td>
                                                 <td>${o.getQuantity()}</td>
                                                 <td>${o.cid}</td>
@@ -143,6 +147,7 @@
                                     <h3 style="color: white">List Brand</h3>
                                     <thead>
                                         <tr>
+                                            <th scope="col">&nbsp;</th>
                                             <th scope="col">Brand Name</th>
                                             <th scope="col">Number of products</th>
                                             <th scope="col">Brand ID</th>
@@ -152,8 +157,11 @@
                                     <tbody>
                                         <c:forEach items="${requestScope.listBrand}" var="o">
                                             <tr>
+                                                <td><a href="updatebrand?bid=${o.bid}" class="tm-product-delete-link">
+                                                            <i class="far fa-edit fa-lg" style="color: white"></i>
+                                                        </a></td>
                                                 <td class="tm-product-name">${o.bname}</td>
-                                                <td>${o.getQuantity()}</td>
+                                                <td style="text-align: center">${o.getQuantity()}</td>
                                                 <td>${o.bid}</td>
                                                 <td>
                                                     <a onclick="return confirm('Do you want to delete this brand. This action can not undone')" 
@@ -252,16 +260,9 @@
 
                 </c:if>    
             </div>
+                <jsp:include page="ManageFooter.jsp"></jsp:include>
         </div>
-        <footer class="tm-footer row tm-mt-small">
-            <div class="col-12 font-weight-light">
-                <p class="text-center text-white mb-0 px-4 small">
-                    Copyright &copy; <b>2018</b> All rights reserved. 
-
-                    Design: <a rel="nofollow noopener" href="https://templatemo.com" class="tm-footer-link">Template Mo</a>
-                </p>
-            </div>
-        </footer>
+        
 
         <script src="js/jquery3-3.3.1.min.js"></script>
         <!-- https://jquery.com/download/ -->

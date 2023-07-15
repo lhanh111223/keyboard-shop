@@ -37,7 +37,7 @@
                 <div class="text-center">
                     <img src="${acc.avatar}" class="avatar img-circle img-thumbnail" alt="avatar">
                     <h6>Upload a different photo...</h6>
-                    
+
                 </div></hr><br>
 
 
@@ -61,7 +61,7 @@
 
             <div class="col-sm-9">
                 <form action="editprofile" method="post" id="f">
-                    
+
                     <ul class="nav nav-tabs">
                         <li class="active"><a data-toggle="tab" href="#home">Edit Profile</a></li>
                     </ul>
@@ -70,15 +70,15 @@
                     <div class="tab-content">
                         <div class="tab-pane active" id="home">
                             <hr>
-                            
+
                             <div class="form-group">
 
                                 <div class="col-xs-12">
                                     <label for="first_name"><h4>Avatar URL</h4></label>
-                                    <input type="text" class="form-control" name="avatar" value="${acc.avatar}" placeholder="url">
+                                    <input oninput="showAva()" type="text" class="form-control" name="avatar" value="${acc.avatar}" placeholder="url">
                                 </div>
                             </div>
-                            
+
                             <div class="form-group">
 
                                 <div class="col-xs-6">
@@ -109,11 +109,8 @@
                                 </div>
                             </div>
 
-
-
-
                             <div class="form-group">
-                                <div class="col-xs-12">
+                                <div style="padding-bottom: 3%" class="col-xs-12">
                                     <br>
                                     <button class="btn btn-lg btn-success" type="submit"><i class="glyphicon glyphicon-ok-sign"></i> Save</button>
                                     <button onclick="resetForm()" class="btn btn-lg" type="reset"><i class="glyphicon glyphicon-repeat"></i> Reset</button>
@@ -123,11 +120,47 @@
                             <hr>
 
                         </div><!--/tab-pane-->
-
-
+                        <div style="margin-top: 20px">
+                        Day: <input type="number" name="day" value="${day}"/>
+                        Month: <input type="number" name="month" value="${month}"/>
+                        Year: <input type="number" name="year" value="${year}"/>
+                        <input type="submit" value="SEARCH"/>
+                        </div>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">ORDER NO.</th>
+                                    <th scope="col">STATUS</th>
+                                    <th scope="col">PRODUCT</th>
+                                    <th scope="col">QUANTITY</th>
+                                    <th scope="col">PRICE</th>
+                                    <th scope="col">DATE</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <c:forEach items="${listOrder}" var="o">
+                                    <tr>
+                                        <th scope="row"><b>#${o.oid}</b></th>
+                                        <td>
+                                            <div class="tm-status-circle moving">
+                                            </div>Moving
+                                        </td>
+                                        <td><b>${o.fullname}</b></td>
+                                        <td><b>${o.phone}</b></td>
+                                        <td><b>${o.total_money} $</b></td>
+                                        <td><b>${o.order_date} </b></td>
+                                    </tr>
+                                </c:forEach>
+                            </tbody>
+                        </table>
+                        
 
                     </div><!--/tab-pane-->
                 </form>
+                <div class="col-xs-12">
+                    <br>
+                    <a href="index"><button class="btn btn-lg" type="reset"><i class=""></i> Back Home</button></a>
+                </div>
             </div><!--/tab-content-->
 
         </div><!--/col-9-->
@@ -138,6 +171,11 @@
         function resetForm() {
             let f = document.getElementById("f");
             f.reset();
+        }
+
+        function showAva() {
+            var f = document.getElementById("f");
+            f.submit();
         }
     </script>
 

@@ -41,6 +41,13 @@ public class DashboardControl extends HttpServlet {
         OrderDAO od = new OrderDAO();
         DAO dao = new DAO();
         
+        String day = request.getParameter("day");
+        request.setAttribute("day", day);
+        String month = request.getParameter("month");
+        request.setAttribute("month", month);
+        String yearOrder = request.getParameter("yearOrder");
+        request.setAttribute("yearOrder", yearOrder);
+        
         String bid = request.getParameter("bid");
         String year = request.getParameter("year");
         List<Brand> listBrand = od.getRevenueByYear(bid, year);
@@ -70,7 +77,7 @@ public class DashboardControl extends HttpServlet {
         List<Product> listOutOfStock = od.getOutOfStockProd(bid);
         request.setAttribute("listOutOfStock", listOutOfStock);
         request.setAttribute("noOutOfStock", listOutOfStock.size());
-        List<Order> listOrder = od.getAllOrder(bid);
+        List<Order> listOrder = od.getAllOrder(bid,day,month,yearOrder);
         request.setAttribute("listOrder", listOrder);
         request.setAttribute("nolistOrder", listOrder.size());
         List<OrderDetail> listOrderDetail = od.getOrderDetail(bid);

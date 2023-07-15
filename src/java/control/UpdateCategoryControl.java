@@ -7,24 +7,23 @@ package control;
 
 import daoo.DAO;
 import daoo.ManagerDAO;
-import entity.Cart;
-import entity.Item;
-import entity.Product;
+import entity.Account;
+import entity.Category;
 import java.io.IOException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.util.List;
+import jakarta.servlet.http.HttpSession;
+import java.io.PrintWriter;
 
 /**
  *
  * @author HoangAnh
  */
-@WebServlet(name="ProcessControl", urlPatterns={"/process"})
-public class ProcessControl extends HttpServlet {
+@WebServlet(name="UpdateCategoryControl", urlPatterns={"/updatecategory"})
+public class UpdateCategoryControl extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -37,57 +36,10 @@ public class ProcessControl extends HttpServlet {
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         DAO dao = new DAO();
-        ManagerDAO md = new ManagerDAO();
-        List<Product> list = dao.getAllProduct();
-        Cookie arr[] = request.getCookies();
-        String txt = "";
-        if(arr != null){
-            for(Cookie o : arr){
-                if(o.getName().equals("cart")){
-                    txt += o.getValue();
-                    o.setMaxAge(0);
-                    response.addCookie(o);
-                }
-            }
-        }
-        Cart cart = new Cart(txt, list);
-        String num_raw = request.getParameter("num");
-        String id_raw = request.getParameter("id");
-        
-        int id = 0; int num = 0;
-        try {
-            id = Integer.parseInt(id_raw);
-            Product p = dao.getProductByID(id_raw);
-            int numStore = p.getQuantity() - p.getSold();
-            num = Integer.parseInt(num_raw);
-            if ((num == -1 && (cart.getQuantityById(id) <= 1)) || num == 3) {
-                cart.removeItem(id);
-            } else {
-                if (num == 1 && cart.getQuantityById(id) >= numStore) {
-                    num = 0;
-                }
-                double price = p.getPrice() * 2;
-                Item t = new Item(p, num, price);
-                cart.addItem(t);
-
-            }
-        } catch (Exception e) {
-        }
-        
-        List<Item> items = cart.getItems();
-        txt = "";
-        if(items.size() > 0){
-            txt = items.get(0).getProduct().getId() + ":" + items.get(0).getQuantity();
-            for(int i=1; i < items.size(); i++){
-                txt += "/" + items.get(i).getProduct().getId() + ":" + items.get(i).getQuantity();
-            }
-        }
-        Cookie c = new Cookie("cart", txt);
-        c.setMaxAge(3600*24*2);
-        response.addCookie(c);
-        request.setAttribute("cart", cart);
-        request.getRequestDispatcher("ShoppingCart.jsp").forward(request, response);
-        
+        String cid = request.getParameter("cid");
+        Category c = dao.getCateByID(cid);
+        request.setAttribute("c", c);
+        request.getRequestDispatcher("UpdateCategory.jsp").forward(request, response);
     } 
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -114,7 +66,21 @@ public class ProcessControl extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        processRequest(request, response);
+        String cname = request.getParameter("cname");
+        String cid = request.getParameter("cid");
+        ManagerDAO mp = new ManagerDAO();
+        HttpSession session = request.getSession();
+        Account a = (Account) session.getAttribute("acc");
+        if (a != null) {
+            if (a.getIsAdmin() == 1) {
+                mp.updateCategoryByCid(cname, cid);
+                request.setAttribute("messCate", "This category has been updated successfully");
+                request.getRequestDispatcher("loadmanageproduct").forward(request, response);
+            }
+        } else {
+            PrintWriter out = response.getWriter();
+            out.print("You must be login with Admin account to do this action");
+        }
     }
 
     /** 

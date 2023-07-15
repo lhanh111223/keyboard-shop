@@ -56,6 +56,8 @@
                                 <div class="form-group col-lg-12">
                                     <label for="name">Fullname</label>
                                     <input
+                                        style="background-color: gray"
+                                        readonly
                                         value="${brandAcc.fullname}"
                                         name="fullname"
                                         type="text"
@@ -65,6 +67,8 @@
                                 <div class="form-group col-lg-12">
                                     <label for="email">Email</label>
                                     <input
+                                        style="background-color: gray"
+                                        readonly
                                         value="${brandAcc.email}"
                                         name="email"
                                         type="text"
@@ -85,6 +89,8 @@
                                 <div class="form-group col-lg-12">
                                     <label for="password">Password</label>
                                     <input
+                                        style="background-color: gray"
+                                        readonly
                                         value="${brandAcc.password}"
                                         name="password"
                                         type="text"
@@ -94,6 +100,8 @@
                                 <div class="form-group col-lg-12">
                                     <label for="password2">Phone</label>
                                     <input
+                                        style="background-color: gray"
+                                        readonly
                                         value="${brandAcc.phone}"
                                         name="phone"
                                         type="text"
@@ -103,6 +111,8 @@
                                 <div class="form-group col-lg-12">
                                     <label for="phone">Avatar link address</label>
                                     <input
+                                        style="background-color: gray"
+                                        readonly
                                         value="${brandAcc.avatar}"
                                         name="avatar"
                                         type="text"
@@ -124,15 +134,6 @@
                     </div>
                 </div>
             </form>
-            <footer class="tm-footer row tm-mt-small">
-                <div class="col-12 font-weight-light">
-                    <p class="text-center text-white mb-0 px-4 small">
-                        Copyright &copy; <b>2018</b> All rights reserved. 
-
-                        Design: <a rel="nofollow noopener" href="https://templatemo.com" class="tm-footer-link">Template Mo</a>
-                    </p>
-                </div>
-            </footer>
         </div>
 
         <script src="js/jquery3-3.3.1.min.js"></script>
