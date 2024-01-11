@@ -60,7 +60,7 @@
                             <div class="social-login">
                                 <span class="social-label">Or login with</span>
                                 <ul class="socials">
-                                    <li><a href="https://accounts.google.com/o/oauth2/auth/oauthchooseaccount?scope=email profile&redirect_uri=http%3A%2F%2Flocalhost%3A9999%2Ffkbshop%2Flogin&response_type=code&client_id=858666386841-i773lqh7jdqoo9pdgoj5984l0uc1ndbn.apps.googleusercontent.com&approval_prompt=force&service=lso&o2v=1&flowName=GeneralOAuthFlow"
+                                    <li><a href="https://accounts.google.com/o/oauth2/auth/oauthchooseaccount?scope=email profile&redirect_uri=http%3A%2F%2Flocalhost%3A9999%2Fholalearn%2Flogin&response_type=code&client_id=858666386841-i773lqh7jdqoo9pdgoj5984l0uc1ndbn.apps.googleusercontent.com&approval_prompt=force&service=lso&o2v=1&flowName=GeneralOAuthFlow"
                                            ><i class="display-flex-center zmdi zmdi-google"></i></a></li>
                                 </ul>
                             </div>
