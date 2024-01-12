@@ -20,7 +20,7 @@
                 <div class="col-lg-6 col-md-6">
                     <div class="header__top__left">
                         <ul>
-                            <li><i class="fa fa-envelope"></i> anhlhhe176345@fpt.edu.vn</li>
+                            <li><i class="fa fa-envelope"></i> vutiendat101@gmail.com</li>
                             <c:if test="${acc.brandID==0 && acc.isAdmin==0}"><li>Welcome user, ${acc.fullname} </li></c:if>
                             <c:if test="${acc.brandID!=0 && acc.isAdmin==0}"><li>Welcome brand, ${acc.fullname} </li></c:if>
                             <c:if test="${acc.brandID==0 && acc.isAdmin!=0}"><li>Welcome admin, ${acc.fullname} </li></c:if>

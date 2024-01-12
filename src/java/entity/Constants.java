@@ -9,9 +9,9 @@ package entity;
  * @author HoangAnh
  */
 public class Constants {
-    public static String GOOGLE_CLIENT_ID = "858666386841-i773lqh7jdqoo9pdgoj5984l0uc1ndbn.apps.googleusercontent.com";
+    public static String GOOGLE_CLIENT_ID = "872620227103-c4pno2n3lvelp12gmbi01q74cmfb60sa.apps.googleusercontent.com";
 
-	public static String GOOGLE_CLIENT_SECRET = "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";
+	public static String GOOGLE_CLIENT_SECRET = "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";
 
 	public static String GOOGLE_REDIRECT_URI = "http://localhost:9999/fkbshop/login";
 
