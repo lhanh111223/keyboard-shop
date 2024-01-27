@@ -19,7 +19,6 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.io.PrintWriter;
 import java.util.List;
-import static org.apache.tomcat.jni.User.username;
 
 /**
  *
